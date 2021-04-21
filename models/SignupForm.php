@@ -12,7 +12,7 @@ class SignupForm extends Model{
     public $Sex;
     public $Mail;
     public $Number;
-  
+   
     public function rules() {
         return [
             [['Username', 'Password', 'Name', 'LastName', 'DateBirth', 'Sex', 'Mail', 'Number'], 'required', 'message' => 'Заполните поле "{attribute}"'],

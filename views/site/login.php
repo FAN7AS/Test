@@ -11,14 +11,14 @@ $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
 if(Yii::$app->session->hasFlash('flashMessage')):
    ?>
-   <div class="alert-signup" id="AlertMessage">
+   <div class="alert alert-success" id="AlertMessage">
     <p>Вы успешно зарегестрированы</p>
     <button onclick="hide()">&#10008;</button>
 </div>
 <?php
 endif; 
 ?> 
-
+ 
 <div class="site-login" style="">
     <h1><?= Html::encode($this->title) ?></h1>
 

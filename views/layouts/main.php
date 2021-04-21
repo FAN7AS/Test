@@ -9,7 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
+use yii\bootstrap\Carousel;
 AppAsset::register($this);
 
 ?>
@@ -23,6 +23,8 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+       <script src="https://api-maps.yandex.ru/2.1/?apikey=f9403677-2f13-4241-8676-a824c716c011&lang=ru_RU" type="text/javascript"></script>
+<link rel="shortcut icon" href="../favicon.svg?>/images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 <?php $this->beginBody() ?>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ad7116f3ff84b98f0d98d159a07daba",
+    "content-hash": "e2f132079df20fbcd8e1d591d42b5957",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -114,7 +114,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -142,6 +142,27 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/4c0e4becb8263bb5b3e6dadc448d8e7305ef8215",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery-ui",
+            "version": "1.12.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:components/jqueryui.git",
+                "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/jqueryui/zipball/44ecf3794cc56b65954cc19737234a3119d036cc",
+                "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6"
             },
             "type": "bower-asset",
             "license": [
@@ -433,6 +454,43 @@
                 "html"
             ],
             "time": "2020-06-29T00:56:53+00:00"
+        },
+        {
+            "name": "kl83/yii2-ymaps",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kl83/yii2-ymaps.git",
+                "reference": "438ffdf5d4db7f23f686ff99815994e66e7122bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kl83/yii2-ymaps/zipball/438ffdf5d4db7f23f686ff99815994e66e7122bd",
+                "reference": "438ffdf5d4db7f23f686ff99815994e66e7122bd",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "^2.0.0",
+                "yiisoft/yii2-jui": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kl83\\ymaps\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksandr Solovyov",
+                    "email": "solovyov.a.a.19@gmail.com"
+                }
+            ],
+            "description": "Yii2 Yandex Maps toolkit",
+            "time": "2019-02-07T13:18:55+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1142,6 +1200,52 @@
                 }
             ],
             "time": "2020-06-24T00:04:01+00:00"
+        },
+        {
+            "name": "yiisoft/yii2-jui",
+            "version": "2.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-jui.git",
+                "reference": "ce45c16d4fbbe7d1c516d8d0e8311e07f6138eed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/ce45c16d4fbbe7d1c516d8d0e8311e07f6138eed",
+                "reference": "ce45c16d4fbbe7d1c516d8d0e8311e07f6138eed",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery-ui": "~1.12.1",
+                "yiisoft/yii2": "~2.0.4"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\jui\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com"
+                }
+            ],
+            "description": "The Jquery UI extension for the Yii framework",
+            "keywords": [
+                "jQuery UI",
+                "yii2"
+            ],
+            "time": "2017-11-25T15:32:29+00:00"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -3864,16 +3968,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v2.2.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665"
+                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5fa56b4074d1ae755beb55617ddafe6f5d78f665",
-                "reference": "5fa56b4074d1ae755beb55617ddafe6f5d78f665",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/5f38c8804a9e97d23e0c8d63341088cd8a22d627",
+                "reference": "5f38c8804a9e97d23e0c8d63341088cd8a22d627",
                 "shasum": ""
             },
             "require": {
@@ -3882,7 +3986,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -3924,7 +4028,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-07T11:33:47+00:00"
+            "time": "2021-03-23T23:28:01+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -4080,16 +4184,16 @@
         },
         {
             "name": "symfony/event-dispatcher-contracts",
-            "version": "v2.2.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher-contracts.git",
-                "reference": "0ba7d54483095a198fa51781bc608d17e84dffa2"
+                "reference": "69fee1ad2332a7cbab3aca13591953da9cdb7a11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/0ba7d54483095a198fa51781bc608d17e84dffa2",
-                "reference": "0ba7d54483095a198fa51781bc608d17e84dffa2",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/69fee1ad2332a7cbab3aca13591953da9cdb7a11",
+                "reference": "69fee1ad2332a7cbab3aca13591953da9cdb7a11",
                 "shasum": ""
             },
             "require": {
@@ -4102,7 +4206,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -4152,7 +4256,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-07T11:33:47+00:00"
+            "time": "2021-03-23T23:28:01+00:00"
         },
         {
             "name": "symfony/finder",
@@ -4524,21 +4628,21 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v2.2.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1"
+                "reference": "f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/d15da7ba4957ffb8f1747218be9e1a121fd298a1",
-                "reference": "d15da7ba4957ffb8f1747218be9e1a121fd298a1",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb",
+                "reference": "f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "psr/container": "^1.0"
+                "psr/container": "^1.1"
             },
             "suggest": {
                 "symfony/service-implementation": ""
@@ -4546,7 +4650,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-main": "2.4-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -4596,7 +4700,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-07T11:33:47+00:00"
+            "time": "2021-04-01T10:43:52+00:00"
         },
         {
             "name": "symfony/string",
@@ -5062,7 +5166,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "kl83/yii2-ymaps": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

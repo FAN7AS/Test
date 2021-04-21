@@ -15,10 +15,10 @@ body {
 }
 
 .footer {
-   height: 45px;
-   background-color: #f5f5f5;
-   border-top: 1px solid #ddd;
-   padding: 12px 350px 0 350px;
+ height: 45px;
+ background-color: #f5f5f5;
+ border-top: 1px solid #ddd;
+ padding: 12px 350px 0 350px;
 }
 
 
@@ -151,49 +151,80 @@ a.desc:after {
 {
     background-color: red;
 }
-#w2
+.dropdown.open > .dropdown-menu 
 {
     background-color: #282923FF !important;
 }
 .dropdown-menu > li >a
 {
 
- color:  white !important;
+   color:  white !important;
 }
 .dropdown-menu > li >a:hover
 {
- color:  white !important;
- background-color: #45464FFF !important;
+   color:  white !important;
+   background-color: #45464FFF !important;
 }
 .control-label
 {
     width: 140px;
     text-align: left !important;
 }
-.alert-signup
+.alert.alert-success
 {
-   width: 100%;
-   background-color: #DFF3AAFF;
-   height: 4em;
-   padding: 1em 1em 1em 1em;
-   border-radius: 6px;
+  height: auto;
 }
-.alert-signup p
-{
-    display: inline;
-    font-size: 22px;
-    font-style: italic;
-    border: 1px solid  #DFF3AAFa;
- 
-}
-.alert-signup button
+.alert.alert-success > p
 {
     background-color: inherit;
     border: none;
-    float: right;height: 2em;
+    display: inline;
+    outline: none;
+}
+.alert.alert-success > button
+{
+    background-color: inherit;
+    border: none;
+float: right;
     outline: none;
 }
 .control-label
 {
-    
+
+}
+.carousel.slide
+{
+    background-origin:content-box;
+}
+.carousel-inner
+{
+
+    border-radius: 10px;
+}
+.carousel-indicators > li
+{
+
+}
+.carousel-indicators > .active
+{
+
+}
+.carousel-control
+{
+   border-radius: 10px;
+}
+img
+{
+background-size: cover !important;
+}
+.ContactInfo
+{
+    color: white;
+}
+.ContactInfo > ul > li
+{
+    list-style-type: none;
+    padding:  1em 0 0.5em 0;
+    font-family:italic;
+    font-size: 16px;
 }
