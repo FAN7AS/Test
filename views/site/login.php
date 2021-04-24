@@ -9,6 +9,7 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
+
 if(Yii::$app->session->hasFlash('flashMessage')):
    ?>
    <div class="alert alert-success" id="AlertMessage">
@@ -16,7 +17,9 @@ if(Yii::$app->session->hasFlash('flashMessage')):
     <button onclick="hide()">&#10008;</button>
 </div>
 <?php
-endif; 
+endif;
+
+
 ?> 
  
 <div class="site-login" style="">

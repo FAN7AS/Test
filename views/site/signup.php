@@ -6,6 +6,7 @@ use dosamigos\datepicker\DatePicker;
 <div style="margin-left: auto;margin-right: auto;">
 <?php 
 $this->title='Регистрация';
+
 ?>
  <h1><?= Html::encode($this->title) ?></h1>
   <p>Пожалуйста, заполните следующие поля для регистрации:</p>

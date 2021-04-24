@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use Yii;
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {   
   public static function tableName()
@@ -15,8 +15,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-       return static::findOne($id);
-   }
+     return static::findOne($id);
+ }
 
     /**
      * {@inheritdoc}
@@ -75,7 +75,31 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-     return \Yii::$app->security->validatePassword($password, $this->Password);
- }
+       return \Yii::$app->security->validatePassword($password, $this->Password);
+    }
 
+    public static function getUsername()
+    {
+    return User::find()->select(['Username'])->all();
+      /*  $query
+        ->select('username')
+        ->from('users')->all();*/
+    }
+
+    public static function SignUp($bool,$model)
+    {
+        if ($bool)
+        {
+            $user = new User();
+            $user->Username =$model->Username;
+            $user->Password = \Yii::$app->security->generatePasswordHash($model->Password);
+            $user->Name = $model->Name;
+            $user->LastName = $model->LastName;
+            $user->DateBirth = $model->DateBirth;
+            $user->Sex = $model->Sex;
+            $user->Mail = $model->Mail;
+            $user->Number = $model->Number; 
+            return $user->save();
+        }
+    }
 }

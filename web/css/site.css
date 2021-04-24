@@ -199,7 +199,7 @@ float: right;
 .carousel-inner
 {
 
-    border-radius: 10px;
+    border-radius: 7px;
 }
 .carousel-indicators > li
 {
@@ -211,7 +211,7 @@ float: right;
 }
 .carousel-control
 {
-   border-radius: 10px;
+   border-radius: 7px;
 }
 img
 {
@@ -227,4 +227,8 @@ background-size: cover !important;
     padding:  1em 0 0.5em 0;
     font-family:italic;
     font-size: 16px;
+}
+img
+{
+    opacity: 0.85;
 }
