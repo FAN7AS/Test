@@ -22,7 +22,7 @@ endif;
 
 ?> 
  
-<div class="site-login" style="">
+<div class="site-login" >
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Пожалуйста, заполните следующие поля для входа:</p>

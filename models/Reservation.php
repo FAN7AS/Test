@@ -38,8 +38,9 @@ class Reservation extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+
         return [
-            [['idCity', 'idCountry', 'idResort', 'idEmployee'], 'required'],
+            [['idCity', 'idCountry', 'idResort', 'idEmployee'], 'required', 'message' => "Заполните \"" . $this->getAttributeLabel('{attribute}') ."\""],
             [['idCity', 'idCountry', 'idResort', 'idEmployee', 'LengthOfNights', 'NumberOfPeople'], 'integer'],
             [['DateBirth'], 'safe'],
             [['mail', 'Number'], 'string', 'max' => 45],
@@ -57,15 +58,15 @@ class Reservation extends \yii\db\ActiveRecord
     {
         return [
             'idReservation' => 'Id Reservation',
-            'idCity' => 'Id City',
-            'idCountry' => 'Id Country',
-            'idResort' => 'Id Resort',
-            'idEmployee' => 'Id Employee',
-            'LengthOfNights' => 'Length Of Nights',
-            'DateBirth' => 'Date Birth',
-            'mail' => 'Mail',
-            'Number' => 'Number',
-            'NumberOfPeople' => 'Number Of People',
+            'idCity' => 'Город',
+            'idCountry' => 'Страна',
+            'idResort' => 'Курорт',
+            'idEmployee' => 'Сотрудник',
+            'LengthOfNights' => 'Количество ночей',
+            'DateBirth' => 'Дата рождения',
+            'mail' => 'Почта',
+            'Number' => 'Номер',
+            'NumberOfPeople' => 'Туристы',
         ];
     }
 

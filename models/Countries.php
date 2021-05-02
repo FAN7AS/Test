@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Resorts;
 use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "countries".
@@ -15,6 +16,7 @@ use yii\helpers\ArrayHelper;
  */
 class Countries extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
@@ -30,6 +32,7 @@ class Countries extends \yii\db\ActiveRecord
     {
         return [
             [['Title'], 'string', 'max' => 45],
+            [['',''],'required','message' =>'Выберите "{attribute}" '],
         ];
     }
 
@@ -41,6 +44,8 @@ class Countries extends \yii\db\ActiveRecord
         return [
             'idCountry' => 'Id Country',
             'Title' => 'Title',
+              'CountryNames' => 'Country',
+                'ResortNames' => 'Resort',
         ];
     }
 
@@ -64,11 +69,10 @@ class Countries extends \yii\db\ActiveRecord
         return $this->hasMany(Resorts::className(), ['idCountry' => 'idCountry']);
     }
 
-     public static function getCountryNames()
+       public static function getChildDrop($ParentDropId)
     {
-      
-        return ArrayHelper::map(Countries::find()->all(),'idCountry','Title');
+        $ChildDrop = Resorts::find()->where(['idCountry' => $ParentDropId])->all();
+        return $ChildDrop;
     }
-
 
 }
