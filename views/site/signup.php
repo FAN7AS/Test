@@ -5,7 +5,8 @@ use yii\bootstrap\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 
 ?>
-    <div style="margin-left: auto;margin-right: auto;">
+<div class="site-signup">
+    <div style=" padding: 5em 0 0 5em">
         <?php
         $this->title = 'Регистрация';
 
@@ -23,10 +24,10 @@ use dosamigos\datepicker\DatePicker;
         ];
         $form = ActiveForm::begin([
             'id' => 'login-form1',
-            'options' => ['class' => 'form-signup'],
+            'options' => ['class' => ''],
             'layout' => 'horizontal',
             'fieldConfig' => [
-                'template' => "{label}\n<div class=\"col-lg-2\">{input}</div>\n<div class=\"col-lg-3\"><div style='margin-left:2em;width:100%'>{error}</div></div>",
+                'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-3\" >{error}</div>",
                 'horizontalCssClasses' => [
 
                     'error' => 'ssss',
@@ -35,10 +36,10 @@ use dosamigos\datepicker\DatePicker;
                 'labelOptions' => ['class' => 'col-lg-1 control-label'],
             ],
         ]) ?>
-        <?= $form->field($model, 'Username')->textInput(['style' => 'width:250px']) ?>
-        <?= $form->field($model, 'Password')->passwordInput()->textInput(['style' => 'width:250px']) ?>
-        <?= $form->field($model, 'Name')->textInput(['style' => 'width:250px']) ?>
-        <?= $form->field($model, 'LastName')->textInput(['style' => 'width:250px']) ?>
+        <?= $form->field($model, 'Username') ?>
+        <?= $form->field($model, 'Password')->passwordInput() ?>
+        <?= $form->field($model, 'Name') ?>
+        <?= $form->field($model, 'LastName')?>
         <?= $form->field($model, 'DateBirth')->widget(
             DatePicker::className(), [
             'language' => 'ru',
@@ -51,7 +52,7 @@ use dosamigos\datepicker\DatePicker;
             ]
         ]); ?>
         <?= $form->field($model, 'Sex')->dropDownList($items, $params) ?>
-        <?= $form->field($model, 'Mail')->textInput(['style' => 'width:250px']) ?>
+        <?= $form->field($model, 'Mail') ?>
         <?= $form->field($model, 'Number')->widget(\yii\widgets\MaskedInput::className(), [
             'mask' => '+7 (999) 999-99-99', 'options' => ['placeholder' => '+7 (XXX) XXX-XX-XX']]) ?>
 
@@ -68,3 +69,4 @@ use dosamigos\datepicker\DatePicker;
     }
 }
 ?>
+</div>

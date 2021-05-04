@@ -41,9 +41,11 @@ class Reservation extends \yii\db\ActiveRecord
 
         return [
             [['idCity', 'idCountry', 'idResort', 'idEmployee'], 'required', 'message' => "Заполните \"" . $this->getAttributeLabel('{attribute}') ."\""],
-            [['idCity', 'idCountry', 'idResort', 'idEmployee', 'LengthOfNights', 'NumberOfPeople'], 'integer'],
+            [['idCity', 'idCountry', 'idResort', 'idEmployee', 'LengthOfNights', 'NumberOfPeople'], 'integer','message'=>'Только целое число'],
             [['DateBirth'], 'safe'],
             [['mail', 'Number'], 'string', 'max' => 45],
+            ['NumberOfPeople', 'number', 'max' => 8, 'min' => 1, 'tooBig' => 'Не более 8', 'tooSmall' => 'Не менее 1'],
+            ['LengthOfNights', 'number', 'max' => 16, 'min' => 2, 'tooBig' => 'Не более 16', 'tooSmall' => 'Не менее 2'],
             [['idCity'], 'exist', 'skipOnError' => true, 'targetClass' => Cities::className(), 'targetAttribute' => ['idCity' => 'idCity']],
             [['idCountry'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::className(), 'targetAttribute' => ['idCountry' => 'idCountry']],
             [['idEmployee'], 'exist', 'skipOnError' => true, 'targetClass' => Employees::className(), 'targetAttribute' => ['idEmployee' => 'idEmployee']],
