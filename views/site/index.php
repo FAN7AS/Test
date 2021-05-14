@@ -1,5 +1,3 @@
-
-
 <?php
 
 use yii\bootstrap\Carousel;
@@ -8,7 +6,8 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use app\models\Countries;
 use app\models\Cities;
-use app\models\Resorts;
+
+//use app\models\Resorts;
 use kartik\depdrop\DepDrop;
 use yii\helpers\Url;
 use dosamigos\datepicker\DatePicker;
@@ -19,11 +18,15 @@ $this->title = 'Главная';
 /* echo  Yii::$app->user->identity->Name ;
 echo date('Y') - Yii::$app->user->identity->DateBirth;*/
 ?>
+
 <?php
+Yii::$app->user->isGuest ? $_COOKIE['Sub'] = true : $_COOKIE['Sub'] = false;
+$CityDeparture  = ArrayHelper::map(Cities::find()->all(), 'idCity', 'Title');
+$CountryTarget  = ArrayHelper::map(Countries::find()->all(), 'idCountry', 'Title');
 $carousel = [
 
     [
-        'content' => '<img src="images/slider1.jpg">',
+        'content' => '<img src="Images/Slider1.jpg">',
         'caption' => '',
         'options' => ['class' => 'my-class']
     ],
@@ -41,7 +44,7 @@ $carousel = [
 
 ]; ?>
 
-<div class="custom-carousel">
+<div class="custom-carousel" id="carous">
     <?= Carousel::widget([
         'items' => $carousel,
         'options' => ['class' => 'carousel slide', 'data-interval' => '4000', 'style' => 'background-size:cover !important'],
@@ -50,59 +53,74 @@ $carousel = [
             '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>'
         ]
     ]); ?>
-<div class="middle">
-    <div class="form-reservation">
+    <div class="middle">
+        <div id="simple-msg"  hidden>
+            <code class="alert alert-success">Данные успешно отправлены, с вами свяжутся в ближайшее время<span class="close-alert">&times;</span></code> </div>
+        <div class="form-reservation" id="res">
+            <?php
+            $form = ActiveForm::begin([
+                'id' => 'FormAjax',
+                'fieldConfig' => [
+                    'template' => "{label}<div class='col-lg-12' style=''>{input}</div><div style='width: 150px;height: auto;margin-left: auto;margin-right: auto'>{error}</div>",
+                    //  'labelOptions' => ['style' => 'display:flex;justify-content:center;color:white;'],
+                ],
+            ]);
+            ?>
+            <?= $form->field($model, 'idCity')->dropDownList($CityDeparture, ['prompt' => 'Город вылета', 'id' => 'City', 'autofocus' => true]) ?>
+            <?= $form->field($model, 'idCountry')->dropDownList($CountryTarget, ['prompt' => 'Страна', 'id' => 'cat-id']) ?>
+            <?= $form->field($model, 'idResort')->widget(DepDrop::class, [
+                'type' => DepDrop::TYPE_DEFAULT,
+                'options' => ['id' => 'subcat-id'],
+                'pluginOptions' => [
+                    'depends' => ['cat-id'],
+                    'emptyMsg' => 'Нет данных',
+                    'placeholder' => 'Курорт',
+                    'url' => Url::to(['/site/child-drop']),
+                    'initialize' => true,
+                ]
+            ]); ?>
 
-        <?php $form = ActiveForm::begin([
+            <?= $form->field($model, 'LengthOfNights')->textInput(['style' => '']) ?>
+            <?= $form->field($model, 'NumberOfPeople')->textInput([]) ?>
+            <?php if (!Yii::$app->user->isGuest) { ?>
+                <div class="form-group">
+                    <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
+                </div>
+            <?php } ?>
 
-            'fieldConfig' => [
-                'template' => "{label}<div class='col-lg-12' style=''>{input}</div><div style='width: 150px;height: auto;margin-left: auto;margin-right: auto'>{error}</div>",
-                'labelOptions' => ['style' => 'display:flex;justify-content:center;color:white;'],
-            ],
-        ]);
-        /*$x=Countries::getChildDrop($[j]); //Удалить
-        print_r($x);*/
-        ?>
-        <?= $form->field($model, 'idCity')->dropDownList(ArrayHelper::map(Cities::find()->all(), 'idCity', 'Title'), ['prompt' => 'Город вылета', 'id' => 'City', 'autofocus' => true]) ?>
-        <?= $form->field($model, 'idCountry')->dropDownList(ArrayHelper::map(Countries::find()->all(), 'idCountry', 'Title'), ['prompt' => 'Страна', 'id' => 'cat-id']) ?>
-        <?= $form->field($model, 'idResort')->widget(DepDrop::classname(), [
-            'type' => DepDrop::TYPE_DEFAULT,
-            'options' => ['id' => 'subcat-id'],
-            'pluginOptions' => [
-                'depends' => ['cat-id'],
+            <?php if (Yii::$app->user->isGuest) { ?>
+                <button type="button" id="myBtn" class="btn btn-custom">Забронировать</button>
 
-                'emptyMsg' => 'Нет данных',
-                'placeholder' => 'Курорт',
-                'url' => Url::to(['/site/child-drop']),
-                'initialize' => true,
-            ]
-        ]); ?>
-      <!--   <?= $form->field($model, 'DateBirth')->widget(
-            DatePicker::className(), [
-            'language' => 'ru',
-            'inline' => false,
-             'options' => ['style' => ' font-size: 16px; color:black;border:1px solid black; border-right: none !important;width:118px;',],
-            'clientOptions' => [
-                'autoclose' => true,
-                'todayHighlight' => true,
-                'format' => 'yyyy-mm-dd',
-            ]
-        ]); ?> -->
-        <?= $form->field($model, 'LengthOfNights')->textInput(['style' => '']) ?>
-      <!--   <?= $form->field($model, 'mail')->textInput(['email']) ?> -->
-      <!--   <?= $form->field($model, 'Number')->widget(\yii\widgets\MaskedInput::className(), [
-            'mask' => '+7 (999) 999-99-99', 'options' => ['placeholder' => '+7 (XXX) XXX-XX-XX',''=>'']]) ?> -->
-        <?= $form->field($model, 'NumberOfPeople')->textInput([]) ?>
-         
-             
-        <div class="form-group">
-            <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button']) ?>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+ <span class="close">&times;</span>
+                        <div class="modal-text">
+                            <p>Пожалуйста, введите дополнительную информацию: </p>
+                        </div>
+
+                        <?= $form->field($model, 'DateBirth')->widget(
+                            DatePicker::class, [
+                            'language' => 'ru',
+                            'inline' => false,
+
+                            'clientOptions' => [
+                                'autoclose' => true,
+                                'todayHighlight' => true,
+                                'format' => 'yyyy-mm-dd',
+                            ]
+                        ]); ?>
+                        <?= $form->field($model, 'mail')->textInput(['email']) ?>
+                        <?= $form->field($model, 'Number')->widget(\yii\widgets\MaskedInput::class, [
+                            'mask' => '+7 (999) 999-99-99', 'options' => ['placeholder' => '+7 (XXX) XXX-XX-XX', '' => '']]) ?>
+                        <div class="form-group">
+                            <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php ActiveForm::end() ?>
+
         </div>
-        <?php ActiveForm::end(); ?>
     </div>
 </div>
-</div>
-<div class="custom-body ">
-sdfsds
-</div>
-
+<div class="custom-body">asdasd</div>

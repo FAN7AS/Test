@@ -10,7 +10,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use yii\bootstrap\Carousel;
 
 AppAsset::register($this);
 
@@ -27,9 +26,9 @@ AppAsset::register($this);
     <?php $this->head() ?>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=f9403677-2f13-4241-8676-a824c716c011&lang=ru_RU"
             type="text/javascript"></script>
-    <link rel="shortcut icon" href="../favicon.svg?>/images/favicon.ico" type="image/x-icon"/>
+
 </head>
-<body>
+<body id="body">
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -60,7 +59,7 @@ AppAsset::register($this);
                     ['class' => 'btn btn-link logout']
                 ) .
                 Html::endForm(),
-                ['label' => 'Личный кабинет', 'url' => ['/#'],
+                ['label' => 'Личный кабинет', 'url' => ['/site/about'],
                     ['class' => 'btn btn-link logout']],
 
             ], 'options' => ['id' => 'test']]
@@ -91,6 +90,8 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </body>
 </html>
 <?php $this->endPage() ?>

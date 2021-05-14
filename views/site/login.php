@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -9,20 +9,17 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
-
-if(Yii::$app->session->hasFlash('flashMessage')):
-   ?>
-   <div class="alert alert-success" id="AlertMessage">
-    <p>Вы успешно зарегестрированы</p>
-    <button onclick="hide()">&#10008;</button>
-</div>
-<?php
-endif;
-
-
-?> 
+?>
  
 <div class="site-login" >
+    <?php
+    if(Yii::$app->session->hasFlash('flashMessage')): ?>
+    <div class="alert alert-success" id="AlertMessage">
+        <p>Вы успешно зарегестрированы</p>
+        <button id="AlertMessageB" ">&#10008;</button>
+    </div>
+    <?php
+endif; ?>
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Пожалуйста, заполните следующие поля для входа:</p>

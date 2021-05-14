@@ -4,18 +4,16 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\filters\ActiveRecord;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\DatabaseQueries;
 use app\models\ContactForm;
 use app\models\SignupForm;
 use app\models\Reservation;
+use app\models\Employees;
 use app\models\Countries;
 use app\models\User;
-use yii\helpers\Url;
 
 class SiteController extends Controller
 {
@@ -70,7 +68,7 @@ class SiteController extends Controller
         $model = new SignupForm();
         $bool = true;
 
-        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
 
             $NamesUsers = User::getUsername();
             foreach ($NamesUsers as $value) {
@@ -94,12 +92,30 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
-        $model = new Reservation();
+       /* $model = new Reservation();
+        if ($model->load(\Yii::$app->request->post()) && $model->validate())
+        {
+         Reservation::AddReservation($model);
+        }
+        else $error=$model->getErrors();
 
-        return $this->render('index', compact('model', '', ''));
+        return $this->render('index', compact('model', 'error', ''));*/
+        $model = new Reservation();
+        if(Yii::$app->request->isAjax){
+            if ($model->load(Yii::$app->request->post()) && $model->validate() ) {
+                Reservation::AddReservation($model);
+            }
+        }
+        $err=$model->errors;
+
+        return $this->render('index', compact('model','err'));
+
     }
+
+
+
 
     /**
      * Login action.
@@ -126,7 +142,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
+    public function actionLogout(): Response
     {
         Yii::$app->user->logout();
         return $this->goHome();
@@ -161,8 +177,7 @@ class SiteController extends Controller
 
     public function actionChildDrop() //Дейсттие для DepDrop ajax
     {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $out = [];
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $post = Yii::$app->request->post();
         if (isset($post['depdrop_parents'])) {
             $parents = $post['depdrop_parents'];
@@ -184,8 +199,7 @@ class SiteController extends Controller
 
             }
         }
-
+     return  true;
     }
 }
 
-?>

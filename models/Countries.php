@@ -2,25 +2,17 @@
 
 namespace app\models;
 
-use Yii;
-use app\models\Resorts;
-use yii\helpers\ArrayHelper;
-/**
- * This is the model class for table "countries".
- *
- * @property int $idCountry
- * @property string|null $Title
- *
- * @property Reservation[] $reservations
- * @property Resorts[] $resorts
- */
-class Countries extends \yii\db\ActiveRecord
+
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
+
+class Countries extends ActiveRecord
 {
 
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'countries';
     }
@@ -28,7 +20,7 @@ class Countries extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['Title'], 'string', 'max' => 45],
@@ -39,7 +31,7 @@ class Countries extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'idCountry' => 'Id Country',
@@ -52,27 +44,26 @@ class Countries extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Reservations]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getReservations()
+    public function getReservations(): ActiveQuery
     {
-        return $this->hasMany(Reservation::className(), ['idCountry' => 'idCountry']);
+        return $this->hasMany(Reservation::class, ['idCountry' => 'idCountry']);
     }
 
     /**
      * Gets query for [[Resorts]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getResorts()
+    public function getResorts(): ActiveQuery
     {
-        return $this->hasMany(Resorts::className(), ['idCountry' => 'idCountry']);
+        return $this->hasMany(Resorts::class, ['idCountry' => 'idCountry']);
     }
 
-       public static function getChildDrop($ParentDropId)
-    {
-        $ChildDrop = Resorts::find()->where(['idCountry' => $ParentDropId])->all();
-        return $ChildDrop;
+       public static function getChildDrop($ParentDropId): array
+       {
+        return Resorts::find()->where(['idCountry' => $ParentDropId])->all();
     }
 
 }

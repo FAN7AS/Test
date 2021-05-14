@@ -6,8 +6,8 @@ body {
 
 }
 
-.container .custom-carousel {
-
+.container .custom-carousel:before {
+    opacity: 0.7;
 }
 
 .carousel.slide {
@@ -18,9 +18,9 @@ body {
 .container .custom-body {
     margin: 0 auto 0 auto;
     padding: 1em 0 0 0;
-    background-color: black;
+    background-color: black !important;
     width: 80%;
-
+    clear: top !important;
 }
 
 .form-reservation .help-block-error {
@@ -30,6 +30,19 @@ body {
     margin: 0;
     padding: 0;
     height: 20px;
+
+}
+
+.form-reservation label {
+    display: flex;
+    justify-content: center;
+    color: white !important;
+}
+
+.modal-content label {
+    margin-left: auto;
+    margin-right: auto;
+    color: black !important;
 }
 
 .help-block-error {
@@ -45,31 +58,112 @@ body {
     float: left;
     padding: 0 10px 0 0;
 }
+#simple-msg {
+    font-size: 18px;
+    margin:  0 auto 0 auto;
+    width: 40%;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 11111111111111111;
 
+
+}
 .container .middle {
     text-align: center;
     margin: -7.5em 0 0 0 !important;
+
 }
 
 .container .form-reservation {
     display: inline-block;
     vertical-align: top;
- min-height: 105px;
+    min-height: 105px;
     background: linear-gradient(to top, #DD2A3F, #E14372);
     border-top-right-radius: 14px;
     border-top-left-radius: 14px;
-    /**/
+
     margin-left: auto;
     margin-right: auto;
     padding: 1.5em 1em 0 1em;
     position: relative;
-    z-index: 1000 !important;
+    z-index: 1 !important;
+}
+
+ol.carousel-indicators {
+    display: none;
 }
 
 .form-reservation form {
     transform: translateY(15%);
 }
 
+
+.modal-content p {
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+
+.modal {
+    position: fixed !important;
+    display: none; /* Hidden by default */
+    margin: -15% auto 0 auto;
+    z-index: 11111111; /* Sit on top */
+    left: 0;
+    width: 100% !important;; /* Full width */
+    height: 400px !important; /* Full height */
+    overflow: auto;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4) !important; /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    z-index: 111111111; /* Sit on top */
+    background-color: #fefefe;
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #888;
+    width: 100%; /* Could be more or less, depending on screen size */
+    height: 100%;
+
+}
+
+.modal-text {
+    padding: 0 1em 2em 1em;
+
+    height: 20px;
+}
+
+/* The Close Button */
+.close-alert {
+    vertical-align: middle;
+    padding: 0 0 0 15px;
+    color: #927373;
+    font-size: 23px;
+    font-weight: bold;
+}
+.close {
+    padding: 0 15px 0 0;
+    color: #614a4a;
+    margin-left: auto;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.close-alert:hover,
+.close:hover,
+.close-alert:focus,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+}
 .form-reservation select {
     display: inline-block;
 }
@@ -80,12 +174,14 @@ body {
     margin: 0 auto -45px;
     width: 100%;
     padding: 0 !important;
+
 }
+
 
 .wrap > .container {
     width: 100%;
     padding: 0;
-
+    z-index: 111111;
 }
 
 .site-login {
@@ -123,8 +219,11 @@ body {
     height: 40px;
     color: #000;
     transform: translateY(55%) !important;
-    float: right !important;
-    font-size: 16px;
+    display: flex;
+
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
 }
 
 .btn.btn-custom:hover {
@@ -309,10 +408,6 @@ a.desc:after {
     outline: none;
 }
 
-.control-label {
-
-}
-
 
 .carousel-inner {
 
@@ -353,7 +448,7 @@ img {
 /*#reservation-number {
     margin-left: auto;
     margin-right: auto;
-  
+
     font-size: 17px !important;
 }
 */
