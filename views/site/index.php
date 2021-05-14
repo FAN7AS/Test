@@ -61,7 +61,7 @@ $carousel = [
             $form = ActiveForm::begin([
                 'id' => 'FormAjax',
                 'fieldConfig' => [
-                    'template' => "{label}<div class='col-lg-12' style=''>{input}</div><div style='width: 150px;height: auto;margin-left: auto;margin-right: auto'>{error}</div>",
+                    'template' => "{label}<div class='col-lg-12' style=''>{input}</div><div style=height: auto;margin-left: auto;margin-right: auto'>{error}</div>",
                     //  'labelOptions' => ['style' => 'display:flex;justify-content:center;color:white;'],
                 ],
             ]);

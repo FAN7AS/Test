@@ -32,6 +32,16 @@ body {
     height: 20px;
 
 }
+.form-reservation .modal .modal-content .help-block-error {
+
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    height: 20px;
+
+}
 
 .form-reservation label {
     display: flex;

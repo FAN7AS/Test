@@ -2,7 +2,10 @@
 
 namespace app\models;
 use Yii;
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+
+class User extends ActiveRecord implements IdentityInterface
 {   
   public static function tableName()
   {
@@ -75,7 +78,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-       return \Yii::$app->security->validatePassword($password, $this->Password);
+       return Yii::$app->security->validatePassword($password, $this->Password);
     }
 
     public static function getUsername()
@@ -92,7 +95,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         {
             $user = new User();
             $user->Username =$model->Username;
-            $user->Password = \Yii::$app->security->generatePasswordHash($model->Password);
+            $user->Password = Yii::$app->security->generatePasswordHash($model->Password);
             $user->Name = $model->Name;
             $user->LastName = $model->LastName;
             $user->DateBirth = $model->DateBirth;
@@ -101,5 +104,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             $user->Number = $model->Number; 
             return $user->save();
         }
+        return true;
     }
 }

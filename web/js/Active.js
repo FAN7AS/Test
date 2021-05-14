@@ -12,8 +12,8 @@ $("#AlertMessageB").click(function() {
 	    data: data,
 	    success: function(res){
 			$('#myModal').fadeOut();
-			$("#simple-msg").show('slow')
-			setTimeout(function() { $("#simple-msg").hide('slow'); }, 6000);
+			$("#simple-msg").fadeIn('slow');
+			setTimeout(function() { $("#simple-msg").fadeOut('slow'); }, 6000);
 			$("#FormAjax")[0].reset();
 
 	    },
@@ -30,7 +30,7 @@ $('.close').click(function() {
 	$('#myModal').fadeOut();
 });
 $('.close-alert').click(function() {
-	$("#simple-msg").hide('slow');
+	$("#simple-msg").fadeOut('slow');
 });
 $(window).click(function(e) {/*
 
