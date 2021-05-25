@@ -112,7 +112,7 @@ $carousel = [
                         <?= $form->field($model, 'mail')->textInput(['email']) ?>
                         <?= $form->field($model, 'Number')->widget(\yii\widgets\MaskedInput::class, [
                             'mask' => '+7 (999) 999-99-99', 'options' => ['placeholder' => '+7 (XXX) XXX-XX-XX', '' => '']]) ?>
-                        <div class="form-group">
+                        <div class="form-group sub-middle">
                             <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
                         </div>
                     </div>

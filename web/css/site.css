@@ -63,9 +63,22 @@ body {
     padding: 0;
     height: 20px;
 }
+select
+{
 
+}
 .form-reservation .form-group {
     float: left;
+    padding: 0 10px 0 0;
+}
+.form-reservation .form-group #subcat-id {
+    padding: 0 0 0 10px;
+}
+
+
+.modal-content .sub-middle {
+    margin-left: auto !important;
+    margin-right: auto !important;
     padding: 0 10px 0 0;
 }
 #simple-msg {
@@ -223,37 +236,60 @@ ol.carousel-indicators {
 
 }
 
-.btn.btn-custom {
+.btn.btn-custom
+{
 
-    background: repeating-linear-gradient(-45deg, #F0E800, #F0E800 3px, #F8F598 1px, #F8F598 6px);
+    background: linear-gradient(to top, #F0E800, #F8F598);
     border: none;
+
+    overflow: hidden;
+    outline: none !important;
     height: 40px;
+display: flex !important;
+    justify-content: center !important;
     color: #000;
     transform: translateY(55%) !important;
-    display: flex;
 
-    margin-left: auto;
-    margin-right: auto;
     font-size: 18px;
 }
 
-.btn.btn-custom:hover {
-    background: repeating-linear-gradient(-45deg, #F0E800, #F0E800 3px, #F8F598 1px, #F8F598 6px);
-    border: none;
-    box-shadow: 0 0 10px rgba(62, 243, 171, 0.5);
-    color: #000;
-    outline: blue !important;
+
+.btn-custom:after {
+    content: "";
+    height:700%;
+    left: -200%;
+    opacity: 0;
+    position: absolute;
+    top: -20%;
+    transform: rotate(-30deg);
+    width: 220%;
+
+    background: rgba(255, 255, 255, 0.13);
+    background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.13) 0%,
+            rgba(255, 255, 255, 0.13) 77%,
+            rgba(255, 255, 255, 0.5) 92%,
+            rgba(255, 255, 255, 0.0) 100%
+    );
 }
 
-.btn.btn-custom:focus {
-    background: repeating-linear-gradient(-45deg, #F0E800, #F0E800 3px, #F8F598 1px, #F8F598 6px);
-    animation: gradient 3s ease infinite;
-    border: none !important;
-    box-shadow: 0 0 20px #F0E800;
-    color: #000;
-    outline: blue !important;
+/* Hover state - trigger effect */
+
+.btn-custom:focus:after {
+    left: -50%;
+    opacity: 1;
+    top: -50%;
+    transition-duration: 0.7s, 0.7s, 0.15s;
+    transition-property: left, top, opacity;
+    transition-timing-function: ease;
 }
 
+/* Active state */
+
+.btn-custom:active:after {
+    opacity: 0;
+}
 .jumbotron {
     text-align: center;
     background-color: transparent;

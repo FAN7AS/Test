@@ -184,6 +184,7 @@ class SiteController extends Controller
 
             if ($parents != null) {
                 $ParentDrop = $parents[0];
+             
                 $ChildDrop = Countries::getChildDrop($ParentDrop);
 
                 if (!$ChildDrop) {

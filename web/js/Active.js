@@ -10,6 +10,7 @@ $("#AlertMessageB").click(function() {
 	    url: 'site/index',
 	    type: 'POST',
 	    data: data,
+	    data: data,
 	    success: function(res){
 			$('#myModal').fadeOut();
 			$("#simple-msg").fadeIn('slow');
@@ -18,12 +19,19 @@ $("#AlertMessageB").click(function() {
 
 	    },
 	    error: function(){
-	       alert('Ошибка!');
+	       alert('Непредвиденная ошибка!');
 }
 });
 return false;
 });
 $('#myBtn').click(function() {
+/*	if	(
+		 $('#reservation-lengthofnights').val()=== '' ||
+		                       $('#City').val()=== '' ||
+		                     $('#cat-id').val()=== '' ||
+		 $('#reservation-numberofpeople').val()=== ''
+	    )
+	else*/
 	$('#myModal').fadeIn();
 });
 $('.close').click(function() {
