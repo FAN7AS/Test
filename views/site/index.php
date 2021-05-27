@@ -55,7 +55,11 @@ $carousel = [
     ]); ?>
     <div class="middle">
         <div id="simple-msg"  hidden>
-            <code class="alert alert-success">Данные успешно отправлены, с вами свяжутся в ближайшее время<span class="close-alert">&times;</span></code> </div>
+            <code class="alert alert-success">Данные успешно отправлены, с вами свяжутся в ближайшее время<span class="close-alert">&times;</span></code>
+        </div>
+        <div id="simple-msg-form"  hidden>
+            <code class="alert alert-success">Заполните все поля </code>
+        </div>
         <div class="form-reservation" id="res">
             <?php
             $form = ActiveForm::begin([
@@ -117,10 +121,24 @@ $carousel = [
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-            <?php ActiveForm::end() ?>
+            <?php }
+            ActiveForm::end() ?>
 
         </div>
     </div>
 </div>
-<div class="custom-body">asdasd</div>
+<div class="custom-body">
+
+
+<?php
+foreach ($CountryList as $item) {
+
+    echo '<div class="country-container">';
+    echo "<a href=''><img src='images/Country/".$item['PicturePath'] ."'>";
+    echo  $item['Title'];
+    echo '</a></div>';
+}
+
+?>
+
+</div>

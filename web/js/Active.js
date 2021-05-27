@@ -1,59 +1,67 @@
-$("#AlertMessageB").click(function() {
-	"use strict";
-	$("#AlertMessage").hide();
+$("#AlertMessageB").click(function () {
+    "use strict";
+    $("#AlertMessage").hide();
 });
 
-	$('#FormAjax').on('beforeSubmit', function(){
-	 var data = $(this).serialize();
+$('#FormAjax').on('beforeSubmit', function () {
+    var data = $(this).serialize();
 
-	 $.ajax({
-	    url: 'site/index',
-	    type: 'POST',
-	    data: data,
-	    data: data,
-	    success: function(res){
-			$('#myModal').fadeOut();
-			$("#simple-msg").fadeIn('slow');
-			setTimeout(function() { $("#simple-msg").fadeOut('slow'); }, 6000);
-			$("#FormAjax")[0].reset();
+    $.ajax({
+        url: 'site/index',
+        type: 'POST',
+        data: data,
+        data: data,
+        success: function (res) {
+            $('#myModal').fadeOut();
+            $("#simple-msg").fadeIn('slow');
 
-	    },
-	    error: function(){
-	       alert('Непредвиденная ошибка!');
-}
+            setTimeout(function () {
+                $("#simple-msg").fadeOut('slow');
+            }, 6000);
+            $("#FormAjax")[0].reset();
+
+        },
+        error: function () {
+            alert('Непредвиденная ошибка!');
+        }
+    });
+    return false;
 });
-return false;
+$('#myBtn').click(function () {
+    if (
+        $('#reservation-lengthofnights').val() === '' ||
+        $('#City').val() === '' ||
+        $('#cat-id').val() === '' ||
+        $('#reservation-numberofpeople').val() === ''
+    ) {
+
+        $('#simple-msg-form').fadeIn();
+        setTimeout(function () {
+            $("#simple-msg-form").fadeOut('slow');
+        }, 900);
+    } else
+        $('#myModal').fadeIn();
 });
-$('#myBtn').click(function() {
-/*	if	(
-		 $('#reservation-lengthofnights').val()=== '' ||
-		                       $('#City').val()=== '' ||
-		                     $('#cat-id').val()=== '' ||
-		 $('#reservation-numberofpeople').val()=== ''
-	    )
-	else*/
-	$('#myModal').fadeIn();
+$('.close').click(function () {
+    $('#myModal').fadeOut();
 });
-$('.close').click(function() {
-	$('#myModal').fadeOut();
+$('.close-alert').click(function () {
+    $("#simple-msg").fadeOut('slow');
 });
-$('.close-alert').click(function() {
-	$("#simple-msg").fadeOut('slow');
-});
-$(window).click(function(e) {/*
+$(window).click(function (e) {/*
 
 	alert(e.target.id);
 	alert(e.target.className);*/
-	if (e.target.id == '' && e.target.className == '' || e.target.className=="wrap") {
-		$('#myModal').fadeOut();
+    if (e.target.id == '' && e.target.className == '' || e.target.className == "wrap") {
+        $('#myModal').fadeOut();
 
-	}
+    }
 });
-$(document).keyup(function(e) {
-	if (e.keyCode === 27) {
-		$('#myModal').fadeOut();
+$(document).keyup(function (e) {
+    if (e.keyCode === 27) {
+        $('#myModal').fadeOut();
 
-	}
+    }
 });
 /*
 

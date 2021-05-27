@@ -42,7 +42,7 @@ class Reservation extends ActiveRecord
     {
 
         return [
-            [['idCity', 'idCountry', 'idResort','mail','Number','DateBirth'], 'required', 'message' => "Заполните \"" . $this->getAttributeLabel('{attribute}') . "\""],
+            [['idCity', 'idCountry', 'idResort'], 'required', 'message' => "Заполните \"" . $this->getAttributeLabel('{attribute}') . "\""],
             [['idCity', 'idCountry', 'idResort', 'idEmployee', 'LengthOfNights', 'NumberOfPeople'], 'integer', 'message' => 'Только целое число'],
             [['DateBirth', 'DateAdded'], 'safe'],
             [['mail', 'Number'], 'string', 'max' => 145],

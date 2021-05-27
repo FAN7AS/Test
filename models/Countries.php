@@ -65,5 +65,9 @@ class Countries extends ActiveRecord
        {
         return Resorts::find()->where(['idCountry' => $ParentDropId])->all();
     }
+    public static function getCountry(): array
+    {
+        return Countries::find()->all();
+    }
 
 }

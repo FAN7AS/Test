@@ -94,14 +94,6 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
-       /* $model = new Reservation();
-        if ($model->load(\Yii::$app->request->post()) && $model->validate())
-        {
-         Reservation::AddReservation($model);
-        }
-        else $error=$model->getErrors();
-
-        return $this->render('index', compact('model', 'error', ''));*/
         $model = new Reservation();
         if(Yii::$app->request->isAjax){
             if ($model->load(Yii::$app->request->post()) && $model->validate() ) {
@@ -109,8 +101,8 @@ class SiteController extends Controller
             }
         }
         $err=$model->errors;
-
-        return $this->render('index', compact('model','err'));
+        $CountryList= Countries::getCountry();
+        return $this->render('index', compact('model','err','CountryList'));
 
     }
 

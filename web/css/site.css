@@ -1,8 +1,8 @@
 html,
 body {
     height: 100%;
-    background-color: #7BFFF8;
-);
+    background-color: #313336;
+
 
 }
 
@@ -15,12 +15,44 @@ body {
 
 }
 
+.custom-body img {
+    width: 300px;
+    height: 150px;
+}
+
+.custom-body a {
+    color: steelblue;
+   text-decoration: none;
+    text-align: center;
+}
+
+.country-container {
+    font-size: 20px;
+    border: 3px solid #bcd4bc;
+    background-color: #F5F5F8;
+    border-radius: 8px;
+    margin: 10px;
+    height: 200px;
+    width: 320px;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    display: flex;
+    justify-content: center;
+
+
+}
+
 .container .custom-body {
-    margin: 0 auto 0 auto;
-    padding: 1em 0 0 0;
-    background-color: black !important;
+    margin: 0 auto 10% auto;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #FFFFFF !important;
     width: 80%;
-    clear: top !important;
+    height: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: stretch;
 }
 
 .form-reservation .help-block-error {
@@ -32,6 +64,7 @@ body {
     height: 20px;
 
 }
+
 .form-reservation .modal .modal-content .help-block-error {
 
     text-align: center;
@@ -63,14 +96,16 @@ body {
     padding: 0;
     height: 20px;
 }
-select
-{
+
+select {
 
 }
+
 .form-reservation .form-group {
     float: left;
     padding: 0 10px 0 0;
 }
+
 .form-reservation .form-group #subcat-id {
     padding: 0 0 0 10px;
 }
@@ -81,9 +116,10 @@ select
     margin-right: auto !important;
     padding: 0 10px 0 0;
 }
+
 #simple-msg {
     font-size: 18px;
-    margin:  0 auto 0 auto;
+    margin: 0 auto 0 auto;
     width: 40%;
     position: absolute;
     top: 20%;
@@ -91,9 +127,19 @@ select
     right: 0;
     text-align: center;
     z-index: 11111111111111111;
-
-
 }
+#simple-msg-form {
+    font-size: 18px;
+    margin: 0 auto 0 auto;
+    width: 40%;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 11111111111111111;
+}
+
 .container .middle {
     text-align: center;
     margin: -7.5em 0 0 0 !important;
@@ -170,6 +216,7 @@ ol.carousel-indicators {
     font-size: 23px;
     font-weight: bold;
 }
+
 .close {
     padding: 0 15px 0 0;
     color: #614a4a;
@@ -231,13 +278,12 @@ ol.carousel-indicators {
 .footer {
     width: 100%;
     background-color: black;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid black;
     padding: 14px 0 0 0;
 
 }
 
-.btn.btn-custom
-{
+.btn.btn-custom {
 
     background: linear-gradient(to top, #F0E800, #F8F598);
     border: none;
@@ -245,7 +291,7 @@ ol.carousel-indicators {
     overflow: hidden;
     outline: none !important;
     height: 40px;
-display: flex !important;
+    display: flex !important;
     justify-content: center !important;
     color: #000;
     transform: translateY(55%) !important;
@@ -256,7 +302,7 @@ display: flex !important;
 
 .btn-custom:after {
     content: "";
-    height:700%;
+    height: 700%;
     left: -200%;
     opacity: 0;
     position: absolute;
@@ -290,6 +336,7 @@ display: flex !important;
 .btn-custom:active:after {
     opacity: 0;
 }
+
 .jumbotron {
     text-align: center;
     background-color: transparent;
