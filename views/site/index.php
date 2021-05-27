@@ -132,10 +132,11 @@ $carousel = [
 
 <?php
 foreach ($CountryList as $item) {
-
+echo Html::a('xz', ['countrydetails'], ['class' => 'b btn btn-default btn-lg btn-block  active']);
     echo '<div class="country-container">';
-    echo "<a href=''><img src='images/Country/".$item['PicturePath'] ."'>";
+    echo "<a type='button' href='/site/countrydetails'><img src='images/Country/".$item['PicturePath'] ."'>";
     echo  $item['Title'];
+    echo  $item['idCountry'];
     echo '</a></div>';
 }
 

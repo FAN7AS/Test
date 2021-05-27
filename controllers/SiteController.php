@@ -105,6 +105,12 @@ class SiteController extends Controller
         return $this->render('index', compact('model','err','CountryList'));
 
     }
+    public function actionCountrydetails(): string
+    {
+
+        return $this->render('CountryDetails');
+
+    }
 
 
 
