@@ -1,7 +1,7 @@
 html,
 body {
     height: 100%;
-    background-color: #313336;
+    background-color: #ACACAC;
 
 
 }
@@ -204,10 +204,18 @@ ol.carousel-indicators {
 
 .modal-text {
     padding: 0 1em 2em 1em;
-
     height: 20px;
 }
+.modal-text-bottom
+{
 
+    padding: 0.5em 1em 2em 0.5em;
+    height: 10px;
+}
+.modal-text-bottom p
+{
+    font-size: 11px;
+}
 /* The Close Button */
 .close-alert {
     vertical-align: middle;
@@ -259,6 +267,20 @@ ol.carousel-indicators {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 10em 0 10%;
+
+}
+.site-about {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10em 0 10%;
+
+}
+.country-details {
+   color: yellow;
+    width: 80%;
+    margin: 10em auto 0 auto;
     padding: 0 10em 0 10%;
 
 }

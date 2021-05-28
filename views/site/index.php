@@ -116,8 +116,12 @@ $carousel = [
                         <?= $form->field($model, 'mail')->textInput(['email']) ?>
                         <?= $form->field($model, 'Number')->widget(\yii\widgets\MaskedInput::class, [
                             'mask' => '+7 (999) 999-99-99', 'options' => ['placeholder' => '+7 (XXX) XXX-XX-XX', '' => '']]) ?>
+
                         <div class="form-group sub-middle">
                             <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
+                        </div>
+                        <div class="modal-text-bottom">
+                            <p>Или <?=  Html::a('Зарегестрирйтесь' , ['/site/signup'])?> здесь</p>
                         </div>
                     </div>
                 </div>
@@ -128,13 +132,14 @@ $carousel = [
     </div>
 </div>
 <div class="custom-body">
-
+<form action="countrydetails.php" method=""></form>
 
 <?php
 foreach ($CountryList as $item) {
-echo Html::a('xz', ['countrydetails'], ['class' => 'b btn btn-default btn-lg btn-block  active']);
+
     echo '<div class="country-container">';
-    echo "<a type='button' href='/site/countrydetails'><img src='images/Country/".$item['PicturePath'] ."'>";
+    echo Html::a('Профиль', ['site/countrydetails', 'id' => $item['idCountry']], ['class' => 'profile-link']) ;
+    echo "<a type='button' href='countrydetails.php'><img src='images/Country/".$item['FlagPath'] ."'>";
     echo  $item['Title'];
     echo  $item['idCountry'];
     echo '</a></div>';

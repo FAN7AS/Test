@@ -48,11 +48,11 @@ $('.close').click(function () {
 $('.close-alert').click(function () {
     $("#simple-msg").fadeOut('slow');
 });
-$(window).click(function (e) {/*
+$(window).click(function (e) {
 
-	alert(e.target.id);
+/*	alert(e.target.id);
 	alert(e.target.className);*/
-    if (e.target.id == '' && e.target.className == '' || e.target.className == "wrap") {
+    if (e.target.id == '' && e.target.className == 'container' || e.target.className == "wrap" || e.target.className == "custom-body"|| e.target.className == "form-reservation") {
         $('#myModal').fadeOut();
 
     }

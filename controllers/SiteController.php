@@ -107,8 +107,9 @@ class SiteController extends Controller
     }
     public function actionCountrydetails(): string
     {
-
-        return $this->render('CountryDetails');
+       $idCountry = $_GET['id'] ?? '';
+       $CountryData = Countries::getCountryDeatails($idCountry);
+       return $this->render('Countrydetails',compact('CountryData'));
 
     }
 
