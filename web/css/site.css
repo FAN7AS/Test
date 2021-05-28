@@ -16,13 +16,14 @@ body {
 }
 
 .custom-body img {
+    border-radius: 5px;
     width: 300px;
     height: 150px;
 }
 
 .custom-body a {
     color: steelblue;
-   text-decoration: none;
+    text-decoration: none;
     text-align: center;
 }
 
@@ -32,7 +33,7 @@ body {
     background-color: #F5F5F8;
     border-radius: 8px;
     margin: 10px;
-    height: 200px;
+    height: 195px;
     width: 320px;
     flex-direction: column;
     align-items: center;
@@ -44,7 +45,21 @@ body {
 }
 
 .container .custom-body {
-    margin: 0 auto 10% auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 0 auto 5% auto;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #FFFFFF !important;
+    width: 80%;
+    height: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+
+.country-list {
+
+    margin: 0 auto 5% auto;
     display: flex;
     justify-content: space-evenly;
     background-color: #FFFFFF !important;
@@ -128,6 +143,7 @@ select {
     text-align: center;
     z-index: 11111111111111111;
 }
+
 #simple-msg-form {
     font-size: 18px;
     margin: 0 auto 0 auto;
@@ -206,16 +222,17 @@ ol.carousel-indicators {
     padding: 0 1em 2em 1em;
     height: 20px;
 }
-.modal-text-bottom
-{
+
+.modal-text-bottom {
 
     padding: 0.5em 1em 2em 0.5em;
     height: 10px;
 }
-.modal-text-bottom p
-{
+
+.modal-text-bottom p {
     font-size: 11px;
 }
+
 /* The Close Button */
 .close-alert {
     vertical-align: middle;
@@ -242,7 +259,18 @@ ol.carousel-indicators {
     cursor: pointer;
 }
 
+#upbutton {
+    background: url("../images/Other/Arrow.png") no-repeat top left;
+    height: 60px;
+    width: 60px;
+    bottom: 70px;
+    right: 30px;
+    cursor: pointer;
+    display: none;
+    position: fixed;
+    z-index: 111111111111111111111111111111111111111111111111111111111111;
 }
+
 .form-reservation select {
     display: inline-block;
 }
@@ -256,8 +284,76 @@ ol.carousel-indicators {
 
 }
 
+.navbar-brand {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+
+.brand-picture {
+    border-radius: 3px;
+    height: 70px;
+    width: 300px;
+    opacity: 0.85;
+}
+
+.brand-picture:hover {
+    border-radius: 3px;
+    height: 70px;
+    width: 300px;
+    opacity: 1;
+}
+
+.navbar-default {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    height: 80px;
+    font-weight: lighter;
+    background-color: #efeeee;
+    font-size: 17px;
+}
+
+.navbar-header {
+
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+
+.navbar-nav {
+
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+
+#test {
+    width: 82.5px !important;
+    border-radius: 5px !important;
+}
+
+.navbar-default .navbar-nav > .open > a {
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    background-color: #87939A !important;
+}
+
+.navbar-nav .active a {
+    border-radius: 5px;
+    background-color: #87939A !important;
+    display: flex;
+    align-items: center;
+    height: 70px;
+}
 
 .wrap > .container {
+
+
     width: 100%;
     padding: 0;
     z-index: 111111;
@@ -270,6 +366,7 @@ ol.carousel-indicators {
     padding: 0 10em 0 10%;
 
 }
+
 .site-about {
     width: 80%;
     margin-left: auto;
@@ -277,19 +374,110 @@ ol.carousel-indicators {
     padding: 0 10em 0 10%;
 
 }
-.country-details {
-   color: yellow;
-    width: 80%;
-    margin: 10em auto 0 auto;
-    padding: 0 10em 0 10%;
 
+.promo {
+    padding: 0;
+    margin: 0;
 }
 
-.site-contact {
+.country-details {
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #FFFFFF !important;
+    width: 80% !important;
+    margin: 0 auto 5% auto;
+    padding: 0 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.resort-details {
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #FFFFFF !important;
+    width: 80% !important;
+    margin: 0 auto 5% auto;
+    padding: 0 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text {
+    border-bottom: none !important;
+    font-size: 15px;
+    padding: 10px 10px 10px 20%;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 0 5em 0;
+}
+
+.resort {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.resort img {
+    width: 300px;
+    height: 150px;
+}
+
+.text-index {
+    font-family: sans-serif;
+    font-size: 16px;
+    width: 80%;
+}
+
+.text-index h1, h2, h3 {
+    text-align: center;
+}
+
+.text strong {
+    font-size: 20px;
+}
+
+.country-header {
+    font-family: Algerian, serif;
+    font-size: 35px;
+    margin: 0.2em;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.resort-header {
+    font-family: Algerian, serif;
+    font-size: 35px;
+    margin: 0.2em;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+
+.country-details .image-country {
+    margin: 0.3em;
+    border-radius: 5px;
+    width: 130px;
+    height: 70px;
+
+}
+.resort-details .image-resort {
+    margin: 0.3em;
+    border-radius: 5px;
+    width: 130px;
+    height: 100px;
+
+}
+.site-contact {
+
+    width: 80%;
+    margin: 0 auto 2em auto;
+    padding: 0 3em 0 3em;
 }
 
 .site-signup {
@@ -298,10 +486,11 @@ ol.carousel-indicators {
 }
 
 .footer {
+    position: relative;
     width: 100%;
     background-color: black;
-    border-top: 1px solid black;
-    padding: 14px 0 0 0;
+    border-top: 7px solid red;
+    padding: 8px 0 0 0;
 
 }
 
@@ -488,7 +677,7 @@ a.desc:after {
 }
 
 .dropdown.open > .dropdown-menu {
-    background-color: #282923FF !important;
+    background-color: #636561 !important;
 }
 
 .dropdown-menu > li > a {

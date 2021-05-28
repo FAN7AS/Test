@@ -34,10 +34,10 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Html::img('images/BrandLabel/BrandLabel.png', ['alt'=>Yii::$app->name, 'class' => 'brand-picture', 'style' => '']),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-default navbar-fixed-top',
         ],
     ]);
     echo Nav::widget([
@@ -72,12 +72,12 @@ AppAsset::register($this);
 
     <div class="container">
 
-        <?= Breadcrumbs::widget([
+        <?/*= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
+        ]) */?><!--
+        --><?/*= Alert::widget() */?>
         <?= $content ?>
-
+        <div id="upbutton"><img src="images/Other/Arrow.png" width="50px"></div>
     </div>
 </div>
 

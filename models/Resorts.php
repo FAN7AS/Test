@@ -71,4 +71,12 @@ class Resorts extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Countries::className(), ['idCountry' => 'idCountry']);
     }
+    public static function getCountryResorts($idCountry): array
+    {
+        return Resorts::find()->where(['idCountry' => $idCountry])->all();
+    }
+    public static function getCountryResort($idResort): array
+    {
+        return Resorts::find()->where(['idResorts' => $idResort])->all();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Resorts;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -94,26 +95,35 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
+        $modelSearchCountry = new Countries();
         $model = new Reservation();
-        if(Yii::$app->request->isAjax){
-            if ($model->load(Yii::$app->request->post()) && $model->validate() ) {
+        if (Yii::$app->request->isAjax) {
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 Reservation::AddReservation($model);
             }
         }
-        $err=$model->errors;
-        $CountryList= Countries::getCountry();
-        return $this->render('index', compact('model','err','CountryList'));
+        $err = $model->errors;
+        $CountryList = Countries::getCountry();
+        return $this->render('index', compact('model', 'err', 'CountryList', 'modelSearchCountry'));
 
     }
+
     public function actionCountrydetails(): string
     {
-       $idCountry = $_GET['id'] ?? '';
-       $CountryData = Countries::getCountryDeatails($idCountry);
-       return $this->render('Countrydetails',compact('CountryData'));
+        $idCountry = $_GET['country'] ?? '';
+        $CountryData = Countries::getCountryDeatails($idCountry);
+        $ResortsData = Resorts::getCountryResorts($idCountry);
+        return $this->render('Countrydetails', compact('CountryData', 'ResortsData'));
 
     }
 
+    public function actionResortdetails(): string
+    {
+        $idResort = $_GET['resort'] ?? '';
+  $ResortData=Resorts::getCountryResort($idResort);
+        return $this->render('Resortdetails', compact('ResortData'));
 
+    }
 
 
     /**
@@ -183,7 +193,7 @@ class SiteController extends Controller
 
             if ($parents != null) {
                 $ParentDrop = $parents[0];
-             
+
                 $ChildDrop = Countries::getChildDrop($ParentDrop);
 
                 if (!$ChildDrop) {
@@ -199,7 +209,7 @@ class SiteController extends Controller
 
             }
         }
-     return  true;
+        return true;
     }
 }
 

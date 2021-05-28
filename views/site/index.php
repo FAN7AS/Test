@@ -21,23 +21,23 @@ echo date('Y') - Yii::$app->user->identity->DateBirth;*/
 
 <?php
 Yii::$app->user->isGuest ? $_COOKIE['Sub'] = true : $_COOKIE['Sub'] = false;
-$CityDeparture  = ArrayHelper::map(Cities::find()->all(), 'idCity', 'Title');
-$CountryTarget  = ArrayHelper::map(Countries::find()->all(), 'idCountry', 'Title');
+$CityDeparture = ArrayHelper::map(Cities::find()->all(), 'idCity', 'Title');
+$CountryTarget = ArrayHelper::map(Countries::find()->all(), 'idCountry', 'Title');
 $carousel = [
 
     [
-        'content' => '<img src="Images/Slider1.jpg">',
+        'content' => '<img src="Images/Slider/Slider1.jpg">',
         'caption' => '',
         'options' => ['class' => 'my-class']
     ],
     [
-        'content' => '<img src="images/slider2.jpg"/>',
+        'content' => '<img src="images/Slider/slider2.jpg"/>',
         'caption' => '',
         'options' => ['style' => 'background-size:cover ']
     ]
     ,
     [
-        'content' => '<img src="images/slider3.jpg" alt="sd"/>',
+        'content' => '<img src="images/Slider/slider3.jpg" alt="sd"/>',
         'caption' => '',
         'options' => ['class' => 'my-class']
     ]
@@ -54,10 +54,11 @@ $carousel = [
         ]
     ]); ?>
     <div class="middle">
-        <div id="simple-msg"  hidden>
-            <code class="alert alert-success">Данные успешно отправлены, с вами свяжутся в ближайшее время<span class="close-alert">&times;</span></code>
+        <div id="simple-msg" hidden>
+            <code class="alert alert-success">Данные успешно отправлены, с вами свяжутся в ближайшее время<span
+                        class="close-alert">&times;</span></code>
         </div>
-        <div id="simple-msg-form"  hidden>
+        <div id="simple-msg-form" hidden>
             <code class="alert alert-success">Заполните все поля </code>
         </div>
         <div class="form-reservation" id="res">
@@ -97,7 +98,7 @@ $carousel = [
 
                 <div id="myModal" class="modal">
                     <div class="modal-content">
- <span class="close">&times;</span>
+                        <span class="close">&times;</span>
                         <div class="modal-text">
                             <p>Пожалуйста, введите дополнительную информацию: </p>
                         </div>
@@ -121,7 +122,7 @@ $carousel = [
                             <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
                         </div>
                         <div class="modal-text-bottom">
-                            <p>Или <?=  Html::a('Зарегестрирйтесь' , ['/site/signup'])?> здесь</p>
+                            <p>Или <?= Html::a('Зарегестрирйтесь', ['/site/signup']) ?> здесь</p>
                         </div>
                     </div>
                 </div>
@@ -132,19 +133,49 @@ $carousel = [
     </div>
 </div>
 <div class="custom-body">
-<form action="countrydetails.php" method=""></form>
+    <div class="text-index">
+        <h2>Турагентство «EASY Tour»</h2>
+        <p>
+        Крупное туристическое агентство «Easy Tour», которое уже много лет делает отдых за границей доступнее для
+        жителей России и стран СНГ. Нашей главной задачей является предоставление лучшего тура каждому нашему клиенту,
+        поэтому мы постоянно пополняем наш каталог доступных для поездок стран и туристических мест, а также организуем
+        автобусные туры по Европе и России.
+        </p>
+        <p>
+        Нашей визитной карточкой является то, что нашим клиентам мы составляем индивидуальные туры с учетом их
+        предпочтений и финансовых возможностей. «Easy Tour» может организовать поездку в 32 страны Европы, Азии и
+        Америки, а также путешествие по городам России.
+        </p>
+        <p>
+        Наш сайт туристического агентства  в Ростове-на-Дону помогает с выбором страны на основе ваших
+        пожеланий, места проживания, отеля, оформлением страховки и визы, покупкой билетов на самолет и подбором
+        интересующих вас экскурсий.
+        </p>
+        <h2>Турагентство EASY Tour — поиск горящих туров из Ростова-на-Дону</h2>
+        <hr>
+        <h3>Здесь вы можете найти более подробную информацию о странах</h3>
+        <hr>
+    </div>
 
-<?php
-foreach ($CountryList as $item) {
+<div class="country-list">
+    <?php
+    foreach ($CountryList as $item) {
 
-    echo '<div class="country-container">';
-    echo Html::a('Профиль', ['site/countrydetails', 'id' => $item['idCountry']], ['class' => 'profile-link']) ;
-    echo "<a type='button' href='countrydetails.php'><img src='images/Country/".$item['FlagPath'] ."'>";
-    echo  $item['Title'];
-    echo  $item['idCountry'];
-    echo '</a></div>';
-}
+        echo '<div class="country-container">';
+        echo Html::a(Html::img('images/Country/' . $item['FlagPath']), ['site/countrydetails', 'country' => $item['idCountry']]);
 
-?>
+        echo $item['Title'];
 
+        echo '</a></div>';
+    }
+
+    ?>
+</div>
+   <?php $form = ActiveForm::begin([
+        'id' => 'login-form',
+        'layout' => 'horizontal',
+
+    ]); ?>
+    <?= $form->field($modelSearchCountry, 'Title')->textInput(['autofocus' => true])->label('') ?>
+    <?php ActiveForm::end(); ?>
 </div>

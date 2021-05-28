@@ -71,6 +71,7 @@ class Countries extends ActiveRecord
     }
     public static function getCountryDeatails($idCountry): array
     {
-        return Countries::find()->where(['idCountry' => $idCountry])->all();
+        return Countries::find()->where(['Countries.idCountry' => $idCountry])->all();
     }
+
 }
