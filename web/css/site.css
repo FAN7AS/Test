@@ -1,7 +1,7 @@
 html,
 body {
     height: 100%;
-    background-color: #ACACAC;
+    background-color:white;
 
 
 }
@@ -29,9 +29,9 @@ body {
 
 .country-container {
     font-size: 20px;
-    border: 3px solid #bcd4bc;
+    border: 2px solid #bcd4bc;
     background-color: #F5F5F8;
-    border-radius: 8px;
+    border-radius: 3px !important;
     margin: 10px;
     height: 195px;
     width: 320px;
@@ -40,11 +40,24 @@ body {
     color: black;
     display: flex;
     justify-content: center;
+}
+.country-container:hover {
+    font-size: 20px;
+    border: 3px solid #a3ada3;
 
-
+    border-radius: 3px !important;
+    margin: 10px;
+    height: 195px;
+    width: 320px;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    display: flex;
+    justify-content: center;
 }
 
 .container .custom-body {
+    border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin: 0 auto 5% auto;
     display: flex;
@@ -58,8 +71,9 @@ body {
 }
 
 .country-list {
-
-    margin: 0 auto 5% auto;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 1em auto 5% auto;
     display: flex;
     justify-content: space-evenly;
     background-color: #FFFFFF !important;
@@ -310,9 +324,11 @@ ol.carousel-indicators {
     align-items: center;
     position: relative;
     margin: 0;
+    padding: 0 0 5px 0;
     height: 80px;
     font-weight: lighter;
     background-color: #efeeee;
+    border-bottom: 3px solid #8e8181;
     font-size: 17px;
 }
 
@@ -321,6 +337,7 @@ ol.carousel-indicators {
     display: flex;
     align-items: center;
     height: 80px;
+
 }
 
 .navbar-nav {
@@ -368,11 +385,17 @@ ol.carousel-indicators {
 }
 
 .site-about {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #FFFFFF !important;
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 10em 0 10%;
+    margin: 1.4em auto 6em auto;
+    padding: 0 3em 0 3em;
 
+}
+
+.pimg {
+    width: 35px;
 }
 
 .promo {
@@ -380,8 +403,26 @@ ol.carousel-indicators {
     margin: 0;
 }
 
-.country-details {
+.live-search {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 200px;
+    width: 100%;
 
+}
+
+.live-search input {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 0;
+    width: 250px
+}
+
+.country-details {
+    border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: #FFFFFF !important;
     width: 80% !important;
@@ -392,8 +433,9 @@ ol.carousel-indicators {
     align-items: center;
     flex-direction: column;
 }
-.resort-details {
 
+.resort-details {
+    border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-color: #FFFFFF !important;
     width: 80% !important;
@@ -413,6 +455,57 @@ ol.carousel-indicators {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     width: 80%;
 }
+.text-about {
+    border-bottom: none !important;
+    font-size: 15px;
+    padding: 10px 10% 10px 20%;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+
+}
+.text-icons {
+
+    font-size: 15px;
+
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.text-advantage {
+    width: 80%;
+}
+
+.text-advantage li {
+
+    padding: 10px;
+}
+
+.icon-image {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.Icon-Item {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    padding: 15px;
+    width: 30%;
+}
+
+.text-icons img {
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+}
 
 .resort {
     width: 80%;
@@ -423,6 +516,7 @@ ol.carousel-indicators {
 }
 
 .resort img {
+    border-radius: 5px;
     width: 300px;
     height: 150px;
 }
@@ -449,6 +543,7 @@ ol.carousel-indicators {
     display: flex;
     align-items: center;
 }
+
 .resort-header {
     font-family: Algerian, serif;
     font-size: 35px;
@@ -466,6 +561,7 @@ ol.carousel-indicators {
     height: 70px;
 
 }
+
 .resort-details .image-resort {
     margin: 0.3em;
     border-radius: 5px;
@@ -473,8 +569,11 @@ ol.carousel-indicators {
     height: 100px;
 
 }
-.site-contact {
 
+.site-contact {
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #FFFFFF !important;
     width: 80%;
     margin: 0 auto 2em auto;
     padding: 0 3em 0 3em;

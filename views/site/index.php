@@ -15,6 +15,7 @@ use dosamigos\datepicker\DatePicker;
 /* @var $this yii\web\View */
 
 $this->title = 'Главная';
+$this->params['breadcrumbs'][] = $this->title;
 /* echo  Yii::$app->user->identity->Name ;
 echo date('Y') - Yii::$app->user->identity->DateBirth;*/
 ?>
@@ -26,7 +27,7 @@ $CountryTarget = ArrayHelper::map(Countries::find()->all(), 'idCountry', 'Title'
 $carousel = [
 
     [
-        'content' => '<img src="Images/Slider/Slider1.jpg">',
+        'content' => '<img src="images/Slider/Slider1.jpg">',
         'caption' => '',
         'options' => ['class' => 'my-class']
     ],
@@ -66,7 +67,7 @@ $carousel = [
             $form = ActiveForm::begin([
                 'id' => 'FormAjax',
                 'fieldConfig' => [
-                    'template' => "{label}<div class='col-lg-12' style=''>{input}</div><div style=height: auto;margin-left: auto;margin-right: auto'>{error}</div>",
+                    'template' => "{label}<div class='col-lg-12' style=''>{input}</div><div >{error}</div>",
                     //  'labelOptions' => ['style' => 'display:flex;justify-content:center;color:white;'],
                 ],
             ]);
@@ -136,46 +137,111 @@ $carousel = [
     <div class="text-index">
         <h2>Турагентство «EASY Tour»</h2>
         <p>
-        Крупное туристическое агентство «Easy Tour», которое уже много лет делает отдых за границей доступнее для
-        жителей России и стран СНГ. Нашей главной задачей является предоставление лучшего тура каждому нашему клиенту,
-        поэтому мы постоянно пополняем наш каталог доступных для поездок стран и туристических мест, а также организуем
-        автобусные туры по Европе и России.
+            Крупное туристическое агентство «Easy Tour», которое уже много лет делает отдых за границей доступнее для
+            жителей России и стран СНГ. Нашей главной задачей является предоставление лучшего тура каждому нашему
+            клиенту,
+            поэтому мы постоянно пополняем наш каталог доступных для поездок стран и туристических мест, а также
+            организуем
+            автобусные туры по Европе и России.
         </p>
         <p>
-        Нашей визитной карточкой является то, что нашим клиентам мы составляем индивидуальные туры с учетом их
-        предпочтений и финансовых возможностей. «Easy Tour» может организовать поездку в 32 страны Европы, Азии и
-        Америки, а также путешествие по городам России.
+            Нашей визитной карточкой является то, что нашим клиентам мы составляем индивидуальные туры с учетом их
+            предпочтений и финансовых возможностей. «Easy Tour» может организовать поездку в 32 страны Европы, Азии и
+            Америки, а также путешествие по городам России.
         </p>
         <p>
-        Наш сайт туристического агентства  в Ростове-на-Дону помогает с выбором страны на основе ваших
-        пожеланий, места проживания, отеля, оформлением страховки и визы, покупкой билетов на самолет и подбором
-        интересующих вас экскурсий.
+            Наш сайт туристического агентства в Ростове-на-Дону помогает с выбором страны на основе ваших
+            пожеланий, места проживания, отеля, оформлением страховки и визы, покупкой билетов на самолет и подбором
+            интересующих вас экскурсий.
         </p>
         <h2>Турагентство EASY Tour — поиск горящих туров из Ростова-на-Дону</h2>
+        <div class="text-icons">
+            <div class="icon-image">
+            <?php
+            $directory = "images/Icons";    // Папка с изображениями
+            $allowed_types = array("jpg", "png", "gif");  //разрешеные типы изображений
+            $file_parts = array();
+            $ext = "";
+            $title = "";
+            $i = 0;
+            //пробуем открыть папку
+            $dir_handle = @opendir($directory) or die("Ошибка при открытии папки !!!");
+            while ($file = readdir($dir_handle))    //поиск по файлам
+            {
+                if ($file == "." || $file == "..") continue;  //пропустить ссылки на другие папки
+                $file_parts = explode(".", $file);          //разделить имя файла и поместить его в массив
+                $ext = strtolower(array_pop($file_parts));   //последний элеменет - это расширение
+
+
+                if (in_array($ext, $allowed_types)) {
+
+                    echo '<div class="Icon-Item">
+                <img src="' . $directory . '/' . $file . '" />';
+                    echo pathinfo($file, PATHINFO_FILENAME) . '</div>';
+                    $i++;
+                }
+
+            }
+            closedir($dir_handle);  //закрыть папку
+            ?>
+            </div>
+            <div class="text-advantage">
+                <h2>Преимущества турагентства «Easy Tour»</h2>
+                <ul>
+                    <li>
+                        Наша фирма существует долгое время, за которое мы успели построить стабильные отношения с туристическими
+                        местами и курортами в России и других странах;
+                    </li>
+                    <li>
+                        Мы продолжаем развиваться и искать все новые пути поездок для наших клиентов. Ежегодно к списку
+                        доступных нам направлений добавляется две-три страны, и наша компания не намерена останавливаться на
+                        достигнутом;
+                    </li>
+                    <li>
+                        Мы можем найти отличный тур на любой кошелек, достаточно лишь назвать ваши пожелания и примерное
+                        направление;
+                    </li>
+                    <li>
+                        Постоянным клиентам мы первым сообщаем о появившихся горящих турах и других выгодных предложениях;
+                    </li>
+                    <li>
+                        Наша турфирма открыта к сотрудничеству с другими российскими компаниями в этой сфере, чтобы иметь
+                        возможность предложить нашим клиентам наилучшее возможное обслуживание.
+                    </li>
+                </ul>
+            </div>
+        </div>
         <hr>
-        <h3>Здесь вы можете найти более подробную информацию о странах</h3>
+        <h3>Здесь вы можете найти более подробную информацию о странах и курортах</h3>
         <hr>
     </div>
+    <div class="live-search">
+        <?php $form = ActiveForm::begin([
+            'id' => 'login-form',
+            'fieldConfig' => [
+                'template' => "{input}",
 
-<div class="country-list">
-    <?php
-    foreach ($CountryList as $item) {
+            ],
+            'layout' => 'horizontal',
 
-        echo '<div class="country-container">';
-        echo Html::a(Html::img('images/Country/' . $item['FlagPath']), ['site/countrydetails', 'country' => $item['idCountry']]);
+        ]); ?>
+        <?= $form->field($modelSearchCountry, 'Title')->textInput(['autofocus' => true])->label('') ?>
+        <?php ActiveForm::end(); ?>
+    </div>
 
-        echo $item['Title'];
+    <div class="country-list">
+        <?php
+        foreach ($CountryList as $item) {
 
-        echo '</a></div>';
-    }
+            echo '<div class="country-container">';
+            echo Html::a(Html::img('images/Country/' . $item['FlagPath']), ['site/countrydetails', 'country' => $item['idCountry']]);
 
-    ?>
-</div>
-   <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'layout' => 'horizontal',
+            echo $item['Title'];
 
-    ]); ?>
-    <?= $form->field($modelSearchCountry, 'Title')->textInput(['autofocus' => true])->label('') ?>
-    <?php ActiveForm::end(); ?>
+            echo '</a></div>';
+        }
+
+        ?>
+    </div>
+
 </div>
