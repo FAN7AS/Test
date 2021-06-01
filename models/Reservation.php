@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "reservation".
@@ -12,25 +11,28 @@ use yii\db\ActiveRecord;
  * @property int $idCity
  * @property int $idCountry
  * @property int $idResort
- * @property int $idEmployee
- * @property int|null $LengthOfNights
+ * @property int|null $idHotel
+ * @property int|null $RoomType
  * @property string|null $DateBirth
  * @property string|null $mail
  * @property string|null $Number
  * @property int|null $NumberOfPeople
  * @property string|null $DateAdded
+ * @property int $idEmployee
+ * @property int|null $LengthOfNights
  *
  * @property Cities $idCity0
  * @property Countries $idCountry0
  * @property Employees $idEmployee0
+ * @property Hotels $idHotel0
  * @property Resorts $idResort0
  */
-class Reservation extends ActiveRecord
+class Reservation extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName(): string
+    public static function tableName()
     {
         return 'reservation';
     }
@@ -38,42 +40,57 @@ class Reservation extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
-
-        return [
-            [['idCity', 'idCountry', 'idResort'], 'required', 'message' => "Заполните \"" . $this->getAttributeLabel('{attribute}') . "\""],
-            [['idCity', 'idCountry', 'idResort', 'idEmployee', 'LengthOfNights', 'NumberOfPeople'], 'integer', 'message' => 'Только целое число'],
-            [['DateBirth', 'DateAdded'], 'safe'],
-            [['mail', 'Number'], 'string', 'max' => 145],
-            ['mail', 'email'],
-            ['NumberOfPeople', 'number', 'max' => 8, 'min' => 1, 'tooBig' => 'Не более 8', 'tooSmall' => 'Не менее 1'],
-            ['LengthOfNights', 'number', 'max' => 16, 'min' => 2, 'tooBig' => 'Не более 16', 'tooSmall' => 'Не менее 2'],
-            [['idCity'], 'exist', 'skipOnError' => true, 'targetClass' => Cities::class, 'targetAttribute' => ['idCity' => 'idCity']],
-            [['idCountry'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['idCountry' => 'idCountry']],
-            [['idEmployee'], 'exist', 'skipOnError' => true, 'targetClass' => Employees::class, 'targetAttribute' => ['idEmployee' => 'idEmployee']],
-            [['idResort'], 'exist', 'skipOnError' => true, 'targetClass' => Resorts::class, 'targetAttribute' => ['idResort' => 'idResorts']],
-        ];
+        if (Yii::$app->user->isGuest) {
+            return [
+                [['idCity', 'idCountry', 'idResort', 'idHotel', 'mail', 'Number', 'DateBirth'], 'required', 'message' => "Заполните \"" . $this->getAttributeLabel('{attribute}') . "\""],
+                [['idCity', 'idCountry', 'idResort', 'idHotel', 'RoomType', 'NumberOfPeople', 'idEmployee', 'LengthOfNights'], 'integer', 'message' => 'Только целое число'],
+                [['DateBirth', 'DateAdded'], 'safe'],
+                [['mail', 'Number'], 'string', 'max' => 145],
+                ['NumberOfPeople', 'number', 'max' => 8, 'min' => 1, 'tooBig' => 'Не более 8', 'tooSmall' => 'Не менее 1'],
+                ['LengthOfNights', 'number', 'max' => 16, 'min' => 2, 'tooBig' => 'Не более 16', 'tooSmall' => 'Не менее 2'],
+                [['idCity'], 'exist', 'skipOnError' => true, 'targetClass' => Cities::class, 'targetAttribute' => ['idCity' => 'idCity']],
+                [['idCountry'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['idCountry' => 'idCountry']],
+                [['idEmployee'], 'exist', 'skipOnError' => true, 'targetClass' => Employees::class, 'targetAttribute' => ['idEmployee' => 'idEmployee']],
+                [['idHotel'], 'exist', 'skipOnError' => true, 'targetClass' => Hotels::class, 'targetAttribute' => ['idHotel' => 'idHotel']],
+                [['idResort'], 'exist', 'skipOnError' => true, 'targetClass' => Resorts::class, 'targetAttribute' => ['idResort' => 'idResorts']],
+            ];
+        } else
+            return [
+                [['idCity', 'idCountry', 'idResort', 'idHotel'], 'required', 'message' => "Заполните \"" . $this->getAttributeLabel('{attribute}') . "\""],
+                [['idCity', 'idCountry', 'idResort', 'idHotel', 'RoomType', 'NumberOfPeople', 'idEmployee', 'LengthOfNights'], 'integer', 'message' => 'Только целое число'],
+                [['DateBirth', 'DateAdded'], 'safe'],
+                [['mail', 'Number'], 'string', 'max' => 145],
+                ['NumberOfPeople', 'number', 'max' => 8, 'min' => 1, 'tooBig' => 'Не более 8', 'tooSmall' => 'Не менее 1'],
+                ['LengthOfNights', 'number', 'max' => 16, 'min' => 2, 'tooBig' => 'Не более 16', 'tooSmall' => 'Не менее 2'],
+                [['idCity'], 'exist', 'skipOnError' => true, 'targetClass' => Cities::class, 'targetAttribute' => ['idCity' => 'idCity']],
+                [['idCountry'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['idCountry' => 'idCountry']],
+                [['idEmployee'], 'exist', 'skipOnError' => true, 'targetClass' => Employees::class, 'targetAttribute' => ['idEmployee' => 'idEmployee']],
+                [['idHotel'], 'exist', 'skipOnError' => true, 'targetClass' => Hotels::class, 'targetAttribute' => ['idHotel' => 'idHotel']],
+                [['idResort'], 'exist', 'skipOnError' => true, 'targetClass' => Resorts::class, 'targetAttribute' => ['idResort' => 'idResorts']],
+            ];
     }
 
     /**
      * {@inheritdoc}
      */
-
-    public function attributeLabels(): array
+    public function attributeLabels()
     {
         return [
             'idReservation' => 'Id Reservation',
             'idCity' => 'Город',
             'idCountry' => 'Страна',
             'idResort' => 'Курорт',
-            'idEmployee' => 'Сотрудник',
-            'LengthOfNights' => 'Количество ночей',
+            'idHotel' => 'Отель',
+            'RoomType' => 'Количество комнат',
             'DateBirth' => 'Дата рождения',
             'mail' => 'Почта',
             'Number' => 'Номер',
             'NumberOfPeople' => 'Туристы',
             'DateAdded' => 'Date Added',
+            'idEmployee' => 'Сотрудник',
+            'LengthOfNights' => 'Количество ночей',
         ];
     }
 
@@ -82,9 +99,9 @@ class Reservation extends ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIdCity0(): \yii\db\ActiveQuery
+    public function getIdCity0()
     {
-        return $this->hasOne(Cities::class, ['idCity' => 'idCity']);
+        return $this->hasOne(Cities::className(), ['idCity' => 'idCity']);
     }
 
     /**
@@ -92,9 +109,9 @@ class Reservation extends ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIdCountry0(): \yii\db\ActiveQuery
+    public function getIdCountry0()
     {
-        return $this->hasOne(Countries::class, ['idCountry' => 'idCountry']);
+        return $this->hasOne(Countries::className(), ['idCountry' => 'idCountry']);
     }
 
     /**
@@ -102,9 +119,19 @@ class Reservation extends ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIdEmployee0(): \yii\db\ActiveQuery
+    public function getIdEmployee0()
     {
-        return $this->hasOne(Employees::class, ['idEmployee' => 'idEmployee']);
+        return $this->hasOne(Employees::className(), ['idEmployee' => 'idEmployee']);
+    }
+
+    /**
+     * Gets query for [[IdHotel0]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdHotel0()
+    {
+        return $this->hasOne(Hotels::className(), ['idHotel' => 'idHotel']);
     }
 
     /**
@@ -112,9 +139,9 @@ class Reservation extends ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getIdResort0(): \yii\db\ActiveQuery
+    public function getIdResort0()
     {
-        return $this->hasOne(Resorts::class, ['idResorts' => 'idResort']);
+        return $this->hasOne(Resorts::className(), ['idResorts' => 'idResort']);
     }
 
     public static function AddReservation($model)
@@ -122,8 +149,7 @@ class Reservation extends ActiveRecord
         $Employee = Date('d') % 2 === 0 ?
             Employees::find()->select('idEmployee')->where(['idEmployee' => 1])->asArray()->all() :
             Employees::find()->select('idEmployee')->where(['idEmployee' => 2])->asArray()->all();
-        if (!Yii::$app->user->isGuest)
-        {
+        if (!Yii::$app->user->isGuest) {
             $model->idCity = $_POST["Reservation"]["idCity"];
             $model->idCountry = $_POST["Reservation"]["idCountry"];
             $model->idResort = $_POST["Reservation"]["idResort"];
@@ -134,9 +160,7 @@ class Reservation extends ActiveRecord
             $model->Number = Yii::$app->user->identity->Number;
             $model->NumberOfPeople = $_POST["Reservation"]["NumberOfPeople"];
             $model->DateAdded = Date('Y-m-d G:i:s');
-        }
-        elseif (Yii::$app->user->isGuest)
-        {
+        } elseif (Yii::$app->user->isGuest) {
             $model->idCity = $_POST["Reservation"]["idCity"];
             $model->idCountry = $_POST["Reservation"]["idCountry"];
             $model->idResort = $_POST["Reservation"]["idResort"];

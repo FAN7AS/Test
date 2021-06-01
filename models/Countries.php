@@ -24,7 +24,7 @@ class Countries extends ActiveRecord
     {
         return [
             [['Title'], 'string', 'max' => 45],
-            [['',''],'required','message' =>'Выберите "{attribute}" '],
+            [['', ''], 'required', 'message' => 'Выберите "{attribute}" '],
         ];
     }
 
@@ -36,8 +36,8 @@ class Countries extends ActiveRecord
         return [
             'idCountry' => 'Id Country',
             'Title' => 'Title',
-              'CountryNames' => 'Country',
-                'ResortNames' => 'Resort',
+            'CountryNames' => 'Country',
+            'ResortNames' => 'Resort',
         ];
     }
 
@@ -61,14 +61,25 @@ class Countries extends ActiveRecord
         return $this->hasMany(Resorts::class, ['idCountry' => 'idCountry']);
     }
 
-       public static function getChildDrop($ParentDropId): array
-       {
+    public static function getChildDrop($ParentDropId): array
+    {
         return Resorts::find()->where(['idCountry' => $ParentDropId])->all();
     }
+    public static function getChildDrop2($ParentDrop)
+    {
+        return Hotels::find()->where(['idResort' =>$ParentDrop])->all();
+    }
+
     public static function getCountry(): array
     {
         return Countries::find()->all();
     }
+    public static function getCountry2($idCountry): array
+    {
+        $data=Countries::find()->where(['idCountry' =>$idCountry])->all();
+        return $data;
+    }
+
     public static function getCountryDeatails($idCountry): array
     {
         return Countries::find()->where(['Countries.idCountry' => $idCountry])->all();

@@ -79,4 +79,9 @@ class Resorts extends \yii\db\ActiveRecord
     {
         return Resorts::find()->where(['idResorts' => $idResort])->all();
     }
+    public static function getResort($idResort): array
+    {
+        $data=Resorts::find()->where(['idResorts' =>$idResort])->all();
+        return $data;
+    }
 }

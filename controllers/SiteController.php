@@ -2,8 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\Cities;
+use app\models\Hotels;
 use app\models\Resorts;
 use Yii;
+use yii\helpers\Html;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -93,20 +96,69 @@ class SiteController extends Controller
      *
      * @return string
      */
+
     public function actionIndex(): string
     {
         $modelSearchCountry = new Countries();
         $model = new Reservation();
         if (Yii::$app->request->isAjax) {
+
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
             if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 Reservation::AddReservation($model);
+
             }
+ $err = $model->errors;
+            $idCity = $_POST["Reservation"]["idCity"];
+            $idCountry = $_POST["Reservation"]["idCountry"];
+            $idResort = $_POST["Reservation"]["idResort"];
+            $idHotel = $_POST["Reservation"]["idHotel"];
+            $city = Cities::getCity($idCity);
+            $country = Countries::getCountry2($idCountry);
+            $resort = Resorts::getResort($idResort);
+            $hotel = Hotels::getHotel($idHotel);
+            foreach ($city as $cityTarget) {
+
+                echo '<div style="margin: 1em">' . $cityTarget['Title'], '</div>';
+
+
+            }
+            foreach ($hotel as $hotelTarget) {
+
+                echo '<div style="margin: 1em">' . $hotelTarget['Title'], '</div>';
+                echo Html::img('images/Hotels/' . $hotelTarget['pictureHotel']);
+                /* echo Html::img('images/Hotels/' . $hotelTarget['pictureHotel']);*/
+                echo '<div style="margin: 1em"><font style="font-size: 15px">
+Цена от:</font><div style="padding: 5px;background-color: red;border-radius: 3px;
+box-shadow: 0 0 10px rgba(239,19,19,0.5); color: white">' . $hotelTarget['minCost'], '</div><font style="font-size: 15px;">Руб.</font></div>';
+
+            }
+            foreach ($resort as $resortTarget) {
+
+                echo '<div style="margin: 1em">' . $resortTarget['Title'], '</div>';
+                echo Html::a(Html::img('images/Resorts/' . $resortTarget['ResortPicture']), ['site/resortdetails', 'country' => $resortTarget['idCountry'], 'resort' => $resortTarget['idResorts']]);
+// echo Html::img('images/Resorts/' . $resortTarget['blazon']);
+
+
+            }
+            foreach ($country as $countryTarget) {
+                echo '<div style="margin: 1em">' . $countryTarget['Title'], '</div>';
+                echo Html::a(Html::img('images/Country/' . $countryTarget['FlagPath']), ['site/countrydetails', 'country' => $countryTarget['idCountry']]);
+
+                /* echo Html::img('images/Country/' . $countryTarget['FlagPath']);*/
+
+
+            }
+            exit;
+
         }
-        $err = $model->errors;
+
         $CountryList = Countries::getCountry();
-        return $this->render('index', compact('model', 'err', 'CountryList', 'modelSearchCountry'));
+        return $this->render('index', compact('model', 'err', 'CountryList', 'modelSearchCountry', 'res',));
 
     }
+
 
     public function actionCountrydetails(): string
     {
@@ -120,7 +172,15 @@ class SiteController extends Controller
     public function actionResortdetails(): string
     {
         $idResort = $_GET['resort'] ?? '';
-  $ResortData=Resorts::getCountryResort($idResort);
+        $ResortData = Resorts::getCountryResort($idResort);
+        return $this->render('Resortdetails', compact('ResortData'));
+
+    }
+
+    public function actionHoteldetails(): string
+    {
+        $idHotel = $_GET['hotel'] ?? '';
+        $HotelData = Resorts::getCountryResort($idResort);
         return $this->render('Resortdetails', compact('ResortData'));
 
     }
@@ -205,11 +265,42 @@ class SiteController extends Controller
 
                     $st[] = ['id' => $value['idResorts'], 'name' => $value['Title']];
                 }
-                return ['output' => $st, 'selected' => $ParentDrop];
+                return ['output' => $st, 'selected' => ''];
 
             }
         }
         return true;
     }
+
+    public function actionProd()
+    {
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $post = Yii::$app->request->post();
+        if (isset($post['depdrop_parents'])) {
+            $parents = $post['depdrop_parents'];
+
+            if ($parents != null) {
+                $ParentDrop = $parents[0];
+
+                $ChildDrop = Countries::getChildDrop2($ParentDrop);
+
+                if (!$ChildDrop) {
+                    return ['output' => '', 'selected' => ''];
+                }
+                $st = [];
+
+                foreach ($ChildDrop as $value) {
+
+                    $st[] = ['id' => $value['idHotel'], 'name' => $value['Title']];
+                }
+                return ['output' => $st, 'selected' => ''];
+
+            }
+        }
+        return true;
+    }
+
+
 }
 

@@ -1,13 +1,17 @@
 html,
 body {
     height: 100%;
-    background-color:white;
+    background-color: white;
 
 
 }
 
 .container .custom-carousel:before {
     opacity: 0.7;
+}
+
+.container .custom-carousel {
+    position: static;
 }
 
 .carousel.slide {
@@ -27,6 +31,19 @@ body {
     text-align: center;
 }
 
+.head-reservation {
+    padding: 0 0 3em 0;
+    display: flex;
+    justify-content: center;
+}
+
+#ter {
+    font-size: 25px;
+    align-items: center;
+    width: 80%;
+    height: 80px;
+}
+
 .country-container {
     font-size: 20px;
     border: 2px solid #bcd4bc;
@@ -41,6 +58,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 .country-container:hover {
     font-size: 20px;
     border: 3px solid #a3ada3;
@@ -59,7 +77,7 @@ body {
 .container .custom-body {
     border-radius: 3px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin: 0 auto 5% auto;
+    margin: 10em auto 5% auto;
     display: flex;
     justify-content: space-evenly;
     background-color: #FFFFFF !important;
@@ -68,6 +86,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     align-content: stretch;
+    position: relative;
 }
 
 .country-list {
@@ -130,10 +149,10 @@ select {
 
 }
 
-.form-reservation .form-group {
+/*.form-reservation .form-group {
     float: left;
     padding: 0 10px 0 0;
-}
+}*/
 
 .form-reservation .form-group #subcat-id {
     padding: 0 0 0 10px;
@@ -218,6 +237,223 @@ ol.carousel-indicators {
     background-color: rgb(0, 0, 0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4) !important; /* Black w/ opacity */
 }
+#reservation-datebirth
+{
+    z-index: 11111111111111111111111111111111111111111111111111111111111111111111111111111111;
+}
+.datepicker-days
+{ }
+.form-direction::-webkit-scrollbar {
+    width: 15px;
+}
+
+.form-direction::-webkit-scrollbar-track {
+border-top-right-radius: 8px;
+    border-bottom-right-radius-right-radius: 8px;
+    background: #d4d4d4;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .2) inset;
+}
+
+.form-direction::-webkit-scrollbar-thumb {
+    background: #939393;
+    border-radius: 8px;
+    border: 3px solid #d4d4d4;
+}
+
+.form-direction::-webkit-scrollbar-thumb:hover {
+    background: #7c7c7c;
+}
+.form-direction {
+
+    border-radius: 5px;
+    overflow-x:hidden !important;
+    overflow: scroll;
+    width: 20%;
+    margin: 0 0 0 1em;
+    padding: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.form-direction-optional {
+height: 100%;
+    width: 20%;
+    padding: 1.2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+   align-items: start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.form-direction-info {
+    padding: 1em;
+    width: 75%;
+    height: auto;
+    margin: 0 0 0 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    align-items: center;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.city-choice
+{
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 0 1em 0 ;
+    margin: 0.1em;
+    width: 90%;
+    height: 8%;
+    font-size: 22px;
+    font-family: Algerian;
+}
+
+#ter
+{
+    box-shadow: 0 0 10px rgba(250, 72, 72, 0.5);
+}
+.country-choice
+{
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    margin: 0.1em;
+    width: 100%;
+    height: 25%;
+    font-size: 25px;
+    font-family: Algerian;
+}
+.country-choice img
+{
+
+ width: 150px;
+    border-radius: 5px;
+}
+.resort-choice
+{
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    margin: 0.1em;
+    width: 100%;
+    height: 25%;
+    font-size: 25px;
+    font-family: Algerian;
+}
+.resort-choice img
+{
+
+    width: 250px;
+    height: 140px;
+    border-radius: 5px;
+}
+.hotel-choice
+{
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    margin: 0.1em;
+    width: 100%;
+    height: 25%;
+    font-size: 25px;
+    font-family: Algerian;
+}
+.hotel-choice img
+{
+
+    width: 250px;
+    height: 140px;
+    border-radius: 5px;
+}
+.other-choice
+{
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: space-evenly   ;
+    padding: 1em 0 1em 0 ;
+    margin: 0.1em;
+    width: 100%;
+    height: auto;
+    font-size: 22px;
+    font-family: Algerian;
+}
+
+.form-direction-disable {
+    width: 3%;
+    margin: 0 0.1em 0 1em;
+    display: flex;
+    justify-content: center;
+}
+
+
+.form-direction form
+{
+
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding:1em 1em 2em 1em;
+}
+
+.form-direction form select, input
+{
+    font-size: 18px !important;
+
+}
+
+.form-direction form select {
+    width: 250px;
+}
+
+
+
+#Sub {
+    margin: auto;
+align-items: center;
+}
+
+.glob-form {
+    margin: -10em 0 0 0;
+    width: 100%;
+    position: fixed;
+z-index: 11;
+    display: none;
+    height: 400px !important;
+
+}
+
+.modalGlob {
+    border-radius: 3px;
+    padding: 1em 0 1em 0;
+    position: relative;
+    margin: -15% 0 0 -40%;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    justify-content: flex-start;
+    flex-direction: row;
+    left: 50%;
+    width: 80% !important;; /* Full width */
+    height: auto !important; /* Full height */
+    background-color: white !important; /* Black w/ opacity */
+}
 
 /* Modal Content/Box */
 .modal-content {
@@ -274,7 +510,7 @@ ol.carousel-indicators {
 }
 
 #upbutton {
-    background: url("../images/Other/Arrow.png") no-repeat top left;
+
     height: 60px;
     width: 60px;
     bottom: 70px;
@@ -370,9 +606,11 @@ ol.carousel-indicators {
 
 .wrap > .container {
 
-
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
-    padding: 0;
+    padding: 0 0 5em 0;
     z-index: 111111;
 }
 
@@ -455,6 +693,7 @@ ol.carousel-indicators {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     width: 80%;
 }
+
 .text-about {
     border-bottom: none !important;
     font-size: 15px;
@@ -463,6 +702,7 @@ ol.carousel-indicators {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 
 }
+
 .text-icons {
 
     font-size: 15px;
@@ -791,7 +1031,7 @@ a.desc:after {
 
 .control-label {
     width: 140px;
-    text-align: left !important;
+    text-align: center !important;
 }
 
 .alert.alert-success {
@@ -857,17 +1097,17 @@ img {
 }
 */
 #reservation-numberofpeople {
-    width: 60px;
+
     margin-left: auto;
     margin-right: auto;
     font-size: 18px !important;
 }
 
 #reservation-lengthofnights {
-    width: 60px;
+
     margin-left: auto;
     margin-right: auto;
-    font-size: 20px !important;
+
     font-size: 18px !important;
 }
 
@@ -906,3 +1146,5 @@ img {
         background: repeating-linear-gradient(45deg, #F0E800, #F0E800 3px, #F8F598 1px, #F8F598 6px);
     }
 }
+
+

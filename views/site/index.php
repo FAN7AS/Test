@@ -56,54 +56,47 @@ $carousel = [
     ]); ?>
     <div class="middle">
         <div id="simple-msg" hidden>
-            <code class="alert alert-success">Данные успешно отправлены, с вами свяжутся в ближайшее время<span
+            <code class="text">Данные успешно отправлены, с вами свяжутся в ближайшее время<span
                         class="close-alert">&times;</span></code>
         </div>
         <div id="simple-msg-form" hidden>
             <code class="alert alert-success">Заполните все поля </code>
         </div>
-        <div class="form-reservation" id="res">
-            <?php
-            $form = ActiveForm::begin([
-                'id' => 'FormAjax',
-                'fieldConfig' => [
-                    'template' => "{label}<div class='col-lg-12' style=''>{input}</div><div >{error}</div>",
-                    //  'labelOptions' => ['style' => 'display:flex;justify-content:center;color:white;'],
-                ],
-            ]);
-            ?>
-            <?= $form->field($model, 'idCity')->dropDownList($CityDeparture, ['prompt' => 'Город вылета', 'id' => 'City', 'autofocus' => true]) ?>
-            <?= $form->field($model, 'idCountry')->dropDownList($CountryTarget, ['prompt' => 'Страна', 'id' => 'cat-id']) ?>
-            <?= $form->field($model, 'idResort')->widget(DepDrop::class, [
-                'type' => DepDrop::TYPE_DEFAULT,
-                'options' => ['id' => 'subcat-id'],
-                'pluginOptions' => [
-                    'depends' => ['cat-id'],
-                    'emptyMsg' => 'Нет данных',
-                    'placeholder' => 'Курорт',
-                    'url' => Url::to(['/site/child-drop']),
-                    'initialize' => true,
-                ]
-            ]); ?>
 
-            <?= $form->field($model, 'LengthOfNights')->textInput(['style' => '']) ?>
-            <?= $form->field($model, 'NumberOfPeople')->textInput([]) ?>
-            <?php if (!Yii::$app->user->isGuest) { ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
-                </div>
-            <?php } ?>
 
-            <?php if (Yii::$app->user->isGuest) { ?>
-                <button type="button" id="myBtn" class="btn btn-custom">Забронировать</button>
+        <div class="glob-form">
+            <div id="modalGlob" class="modalGlob">
+                <div class="form-direction">
+                    <?php
+                    $form = ActiveForm::begin([
+                        'id' => 'FormAjax',
+                        'fieldConfig' => [
 
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <div class="modal-text">
-                            <p>Пожалуйста, введите дополнительную информацию: </p>
-                        </div>
-
+                            //  'labelOptions' => ['style' => 'display:flex;justify-content:center;color:white;'],
+                        ],
+                    ]);
+                    ?>
+                    <?= $form->field($model, 'idCity')->dropDownList($CityDeparture, ['prompt' => 'Город вылета', 'id' => 'City', 'autofocus' => true]) ?>
+                    <?= $form->field($model, 'idCountry')->dropDownList($CountryTarget, ['prompt' => 'Страна', 'id' => 'cat-id']) ?>
+                    <?= $form->field($model, 'idResort')->widget(DepDrop::classname(), [
+                        'options' => ['id' => 'subcat-id'],
+                        'pluginOptions' => [
+                            'depends' => ['cat-id'],
+                            'placeholder' => 'Курорт...',
+                            'url' => Url::to(['/site/child-drop'])
+                        ]
+                    ]); ?>
+                    <?= $form->field($model, 'idHotel')->widget(DepDrop::classname(), [
+                        'pluginOptions' => [
+                            'depends' => ['subcat-id'],
+                            'placeholder' => 'Отель',
+                            'url' => Url::to(['/site/prod'])
+                        ]
+                    ]); ?>
+                    <?= $form->field($model, 'RoomType')->dropDownList(['1' => '1', '2' => '2', '3' => '3'],['prompt' => 'Количество ночей']) ?>
+                    <?= $form->field($model, 'LengthOfNights')->textInput(['style' => '']) ?>
+                    <?= $form->field($model, 'NumberOfPeople')->textInput([]) ?>
+                    <?php if (Yii::$app->user->isGuest) { ?>
                         <?= $form->field($model, 'DateBirth')->widget(
                             DatePicker::class, [
                             'language' => 'ru',
@@ -119,22 +112,40 @@ $carousel = [
                         <?= $form->field($model, 'Number')->widget(\yii\widgets\MaskedInput::class, [
                             'mask' => '+7 (999) 999-99-99', 'options' => ['placeholder' => '+7 (XXX) XXX-XX-XX', '' => '']]) ?>
 
-                        <div class="form-group sub-middle">
-                            <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
-                        </div>
-                        <div class="modal-text-bottom">
-                            <p>Или <?= Html::a('Зарегестрирйтесь', ['/site/signup']) ?> здесь</p>
-                        </div>
+
+                    <?php } ?>
+                    <div class="form-group sub-middle">
+                        <?= Html::submitButton('Забронировать', ['class' => 'btn btn-custom', 'name' => 'contact-button', 'id' => 'Sub']) ?>
+
+                    </div>
+
+                    <?php
+                    ActiveForm::end() ?>
+                </div>
+                <div class="form-direction-info">
+                    <div class="city-choice"></div>
+                    <div class="country-choice">
+
+                    </div>
+                    <div class="resort-choice"></div>
+                    <div class="hotel-choice"></div>
+                    <div class="other-choice">
+                        <div class="TypeRoom"></div>
+                        <div class="AmmountNigths"></div>
+                        <div class="AmmountTourists"></div>
+
                     </div>
                 </div>
-            <?php }
-            ActiveForm::end() ?>
-
+                <div class="form-direction-disable"><span class="close">&times;</span></div>
+            </div>
         </div>
     </div>
 </div>
 <div class="custom-body">
     <div class="text-index">
+        <div class="head-reservation">
+            <button id="ter" class="btn btn-custom" name="dd">Забронировать тур</button>
+        </div>
         <h2>Турагентство «EASY Tour»</h2>
         <p>
             Крупное туристическое агентство «Easy Tour», которое уже много лет делает отдых за границей доступнее для
@@ -157,44 +168,46 @@ $carousel = [
         <h2>Турагентство EASY Tour — поиск горящих туров из Ростова-на-Дону</h2>
         <div class="text-icons">
             <div class="icon-image">
-            <?php
-            $directory = "images/Icons";    // Папка с изображениями
-            $allowed_types = array("jpg", "png", "gif");  //разрешеные типы изображений
-            $file_parts = array();
-            $ext = "";
-            $title = "";
-            $i = 0;
-            //пробуем открыть папку
-            $dir_handle = @opendir($directory) or die("Ошибка при открытии папки !!!");
-            while ($file = readdir($dir_handle))    //поиск по файлам
-            {
-                if ($file == "." || $file == "..") continue;  //пропустить ссылки на другие папки
-                $file_parts = explode(".", $file);          //разделить имя файла и поместить его в массив
-                $ext = strtolower(array_pop($file_parts));   //последний элеменет - это расширение
+                <?php
+                $directory = "images/Icons";    // Папка с изображениями
+                $allowed_types = array("jpg", "png", "gif");  //разрешеные типы изображений
+                $file_parts = array();
+                $ext = "";
+                $title = "";
+                $i = 0;
+                //пробуем открыть папку
+                $dir_handle = @opendir($directory) or die("Ошибка при открытии папки !!!");
+                while ($file = readdir($dir_handle))    //поиск по файлам
+                {
+                    if ($file == "." || $file == "..") continue;  //пропустить ссылки на другие папки
+                    $file_parts = explode(".", $file);          //разделить имя файла и поместить его в массив
+                    $ext = strtolower(array_pop($file_parts));   //последний элеменет - это расширение
 
 
-                if (in_array($ext, $allowed_types)) {
+                    if (in_array($ext, $allowed_types)) {
 
-                    echo '<div class="Icon-Item">
+                        echo '<div class="Icon-Item">
                 <img src="' . $directory . '/' . $file . '" />';
-                    echo pathinfo($file, PATHINFO_FILENAME) . '</div>';
-                    $i++;
-                }
+                        echo pathinfo($file, PATHINFO_FILENAME) . '</div>';
+                        $i++;
+                    }
 
-            }
-            closedir($dir_handle);  //закрыть папку
-            ?>
+                }
+                closedir($dir_handle);  //закрыть папку
+                ?>
             </div>
             <div class="text-advantage">
                 <h2>Преимущества турагентства «Easy Tour»</h2>
                 <ul>
                     <li>
-                        Наша фирма существует долгое время, за которое мы успели построить стабильные отношения с туристическими
+                        Наша фирма существует долгое время, за которое мы успели построить стабильные отношения с
+                        туристическими
                         местами и курортами в России и других странах;
                     </li>
                     <li>
                         Мы продолжаем развиваться и искать все новые пути поездок для наших клиентов. Ежегодно к списку
-                        доступных нам направлений добавляется две-три страны, и наша компания не намерена останавливаться на
+                        доступных нам направлений добавляется две-три страны, и наша компания не намерена
+                        останавливаться на
                         достигнутом;
                     </li>
                     <li>
@@ -202,10 +215,12 @@ $carousel = [
                         направление;
                     </li>
                     <li>
-                        Постоянным клиентам мы первым сообщаем о появившихся горящих турах и других выгодных предложениях;
+                        Постоянным клиентам мы первым сообщаем о появившихся горящих турах и других выгодных
+                        предложениях;
                     </li>
                     <li>
-                        Наша турфирма открыта к сотрудничеству с другими российскими компаниями в этой сфере, чтобы иметь
+                        Наша турфирма открыта к сотрудничеству с другими российскими компаниями в этой сфере, чтобы
+                        иметь
                         возможность предложить нашим клиентам наилучшее возможное обслуживание.
                     </li>
                 </ul>
@@ -213,21 +228,24 @@ $carousel = [
         </div>
         <hr>
         <h3>Здесь вы можете найти более подробную информацию о странах и курортах</h3>
+
         <hr>
     </div>
-    <div class="live-search">
-        <?php $form = ActiveForm::begin([
+
+<!--    <div class="live-search">
+        <?php /*$form = ActiveForm::begin([
             'id' => 'login-form',
             'fieldConfig' => [
+                'template' => "{input}",
                 'template' => "{input}",
 
             ],
             'layout' => 'horizontal',
 
-        ]); ?>
-        <?= $form->field($modelSearchCountry, 'Title')->textInput(['autofocus' => true])->label('') ?>
-        <?php ActiveForm::end(); ?>
-    </div>
+        ]); */?>
+        <?/*= $form->field($modelSearchCountry, 'Title')->textInput()->label('') */?>
+        <?php /*ActiveForm::end(); */?>
+    </div>-->
 
     <div class="country-list">
         <?php
@@ -243,5 +261,7 @@ $carousel = [
 
         ?>
     </div>
-
+    <div class="chatbot-btn" style="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20" width="20" height="20"><path fill="currentColor" d="M14 8.999v-5a2.003 2.003 0 00-2-2H3a2.003 2.003 0 00-2 2v5a2.003 2.003 0 002 2v1.694a.302.302 0 00.486.244l2.587-1.945H12A1.997 1.997 0 0014 9zm3-2h-2v2a3.003 3.003 0 01-3 3H7v2a2.003 2.003 0 002 2h3.927l2.59 1.941c.198.15.483.004.483-.243v-1.701h1a2.003 2.003 0 002-1.997v-5a2.003 2.003 0 00-2-2z" /></svg>
+    </div>
 </div>

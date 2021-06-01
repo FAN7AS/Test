@@ -54,4 +54,9 @@ class Cities extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Reservation::className(), ['idCity' => 'idCity']);
     }
+    public static function getCity($idCity): array
+    {
+        $data=Cities::find()->where(['idCity' =>$idCity])->all();
+        return $data;
+    }
 }

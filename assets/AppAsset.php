@@ -21,10 +21,12 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'SimpleChatbot-1.2.0/chatbot/chatbot.css',
     ];
     public $js = [
           'js/Active.js',
-
+        'SimpleChatbot-1.2.0/chatbot/fp2.js',
+        'SimpleChatbot-1.2.0/chatbot/chatbot.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
